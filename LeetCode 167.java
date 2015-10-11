@@ -1,35 +1,5 @@
-//Leetcode 001
+//LeetCode 167
 
-import java.io.*;
-import java.util.*;
-
-//Solution 1 - Hashmap
-class Solution {
-    public static void main(String[] args) {
-        int[] input = {2,3,7};
-        int target = 5;
-        int [] result = twoSum(input, target);
-        System.out.println(result[0] + " " + result[1]);
-    }
-    
-    public static int[] twoSum(int[] nums, int target) {
-        int [] res = {0, 0};
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        
-        for (int i=0; i<nums.length; i++) {
-            if (map.containsKey(target - nums[i])){
-                res[0] = map.get((target - nums[i])) + 1;
-                res[1] = i + 1;
-            } else {
-                map.put(nums[i], i);
-            }
-        }
-        return res;
-    }
-}
-
-//Solution 2 - BinarySearch - sorted array
-//具体看 LeetCode 167
 import java.io.*;
 import java.util.*;
 
