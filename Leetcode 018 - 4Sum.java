@@ -1,4 +1,7 @@
 //Leetcode 018 - 4Sum.java
+List<List<Integer>> res = new ArrayList();
+res.add(Arrays.asList(a,b,c,d));
+
 
 class Solution {
     public static void main(String[] args) {
