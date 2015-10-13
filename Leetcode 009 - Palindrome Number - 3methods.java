@@ -9,7 +9,7 @@ public class Solution {
       
     }
 
-    //反转整数，然后比较
+    //方法1：反转整数，然后比较
     public static boolean isPalindrome_ReversedInt(int x) {
         if(x < 0) return false;
         
@@ -23,7 +23,7 @@ public class Solution {
         if(origin == reversed) return true;
         else return false;
     }
-    //转化为String，然后前后两个指针比较
+    //方法2：转化为String，然后前后两个指针比较
     public static boolean isPalindrome_String(int x) {
         if(x < 0) return false;
         String s = new String();
@@ -39,7 +39,7 @@ public class Solution {
         }
         return true;
     }
-    //首位数和个位数逐个比较
+    //方法3：首位数和个位数逐个比较
     public static boolean isPalindrome_CompareDigits(int x) {
         if(x < 0) return false;
         //设置一个x1，计算digit

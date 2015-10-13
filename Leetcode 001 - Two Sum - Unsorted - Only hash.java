@@ -1,4 +1,4 @@
-//Leetcode 001
+//Leetcode 001 - Two Sum - unsorted, only hash.java
 
 import java.io.*;
 import java.util.*;

@@ -33,7 +33,7 @@ public class Solution{
         while(L<R){
             int containsWater = Math.min(height[R], height[L]) * (R-L);
             maxWater = Math.max(maxWater, containsWater);
-            if(height[L] < height[R]) L++;//两边指针向中间移，到最高点会合
+            if(height[L] < height[R]) L++; //L R 两者比较就行，两边指针向中间移，到最高点会合
             else R--;
         }
         return maxWater;
