@@ -11,19 +11,7 @@ public class Solution{
         System.out.println(result2 + "");
       
     }
-  
-    public static int maxArea1(int[] height) {
-        //写的逐个比较法，但很明显，太慢了
-        int maxWater = 0;
-        for(int i=0; i<height.length-1; i++){
-            for(int j=i+1; j<height.length; j++){
-                int containsWater = Math.min(height[i], height[j]) * (j-i);
-                maxWater = Math.max(maxWater,containsWater);
-            }
-        }
-        return maxWater;
-    }
-  
+
     public static int maxArea2(int[] height) {
         //贪心法，两边指针向中间移，到最高点会合
         int maxWater = 0;
@@ -38,4 +26,18 @@ public class Solution{
         }
         return maxWater;
     }  
+  
+    public static int maxArea1(int[] height) {
+        //写的逐个比较法，但很明显，太慢了
+        int maxWater = 0;
+        for(int i=0; i<height.length-1; i++){
+            for(int j=i+1; j<height.length; j++){
+                int containsWater = Math.min(height[i], height[j]) * (j-i);
+                maxWater = Math.max(maxWater,containsWater);
+            }
+        }
+        return maxWater;
+    }
+  
+
 }

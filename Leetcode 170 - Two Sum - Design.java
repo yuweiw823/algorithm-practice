@@ -34,15 +34,15 @@ class Solution {
         int L = start;
         int R = end;
         
-        while(L < R-1){
-            int M = L + (R-L)/2;
-            if(A[M] < key) {
-                L = M;
+        while(L<R){
+            int M = (L+R)/2;
+            if(nums[M] < key){
+                L = M+1;
             } else {
                 R = M;
             }
         }
-        return L;
+        return (nums[L] < target) ? L+1 : L;
     }
 }
 
