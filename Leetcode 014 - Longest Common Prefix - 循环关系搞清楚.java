@@ -12,6 +12,7 @@ public class Solution {
     }  
   
     //想清楚两层循环的内外关系
+    //以及都是和第0个 String 进行比较
     //strs[j].length() <= i
     public static String longestCommonPrefix(String[] strs) {
         if(strs == null || strs.length == 0) return null;
