@@ -19,6 +19,7 @@ public class Solution {
 }
 
 //方法2：和方法1类似，看最远的reach
+动态
     public static boolean canJump(int[] nums) {
         int reach = 0;
         for(int i=0; i< nums.length; i++){

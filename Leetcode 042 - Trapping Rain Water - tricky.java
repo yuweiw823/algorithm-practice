@@ -1,4 +1,4 @@
-//Leetcode 042 - Trapping Rain Water.java - tricky
+//Leetcode 042 - Trapping Rain Water - tricky.java
 
 //方法1：记录每个点左右的最高点，形成 max_left[], max_right[] 两个数组。
 //然后再扫一遍，water += min(left, right) - height[i]

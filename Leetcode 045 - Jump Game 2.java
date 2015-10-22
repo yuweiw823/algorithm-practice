@@ -1,6 +1,5 @@
 //Leetcode 045 - Jump Game 2.java
 
-
 public class Solution {
 	public static void main(String[] args){
 	    int[] nums1 = {2,3,1,1,4};
@@ -10,7 +9,7 @@ public class Solution {
 	    System.out.println(jump(nums2)+ "");
 	    System.out.println(jump(nums3)+ "");
     }
-    
+
 //方法1：自己的解法，但这种解法有问题，放弃
 	public static int jump(int[] nums) {
 	    int stepCanUse = 0;
@@ -30,6 +29,7 @@ public class Solution {
 	public static int jump(int[] nums) {
         int curr = 0, reach = 0, count = 0;
         for(int i=0; i<nums.length; i++){
+        	// curr < i 就是要跳的时候，不需要考虑是否一定能跳到最后一位，
             if(curr < i){
                 curr = reach;
                 count++;
