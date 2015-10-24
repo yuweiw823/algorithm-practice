@@ -2,7 +2,6 @@
 
 import java.util.*;
 
-//不知道为什么在codepder里跑不动，但在leetcode里可以跑。
 //L代表还剩下的(的数量，R同理； 左括号数量一定永远 <= 右括号，因为先放。
 //如果出现了 R < L 的情况，必定是先放了一个右括号，立刻 return 
 
@@ -15,7 +14,7 @@ public class Solution {
   
     public static List<String> generateParenthesis(int n) {
         ArrayList<String> res = new ArrayList<String>();
-        helper(n, n, new String(), res);   /java/new String() 记得加上括号
+        helper(n, n, new String(), res);   //new String() 记得加上括号
         return res;
     }
     
@@ -23,7 +22,7 @@ public class Solution {
         if(R<L) return;   //先看 return 条件
         if(L==0 && R==0) res.add(item);   //再 add to res 条件
         if(L > 0) helper(L-1, R, item+"(", res);
-        if(R < 0) helper(L, R-1, item+")", res);
+        if(R > 0) helper(L, R-1, item+")", res);
     }
 }
 

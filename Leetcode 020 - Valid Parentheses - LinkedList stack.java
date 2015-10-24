@@ -1,8 +1,8 @@
 //Leetcode 020 - Valid Parentheses - LinkedList stack.java
 
 //对于 stack 来说，top在最尾，add()和push()的功能相同；
-// push(x): add an item on the top
-// pop: remove the item at the top
+// push(x): add an item on the top，从左边加上
+// pop: remove the item at the top = remove(),都是从左边删除
 // peek: return the item at the top (without removing it)
 import java.util.*;
 
