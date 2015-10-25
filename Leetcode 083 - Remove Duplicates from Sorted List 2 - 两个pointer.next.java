@@ -1,4 +1,5 @@
-//Leetcode 083 - Remove Duplicates from Sorted List 2 - 两个pointer.java
+//Leetcode 083 - Remove Duplicates from Sorted List 2 - 两个pointer.next.java
+//加dummy
 
 public class Solution {
     public static void main (String[] args){

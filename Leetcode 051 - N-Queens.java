@@ -1,4 +1,7 @@
 //Leetcode 051 - N Queens.java
+//典型的NP问题，NP Problem：对于一类问题，我们可能没有一个已知的快速的方法得到问题的答案，
+//但是如果给我们一个candidate answer，我们能够在polynominal的时间内验证这个candidate answer到底是不是我们已知问题的答案
+//http://www.cnblogs.com/Gavin_Liu/archive/2011/05/04/2012284.html
 
 import java.util.*;
 

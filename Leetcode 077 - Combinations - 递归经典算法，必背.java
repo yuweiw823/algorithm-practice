@@ -18,7 +18,8 @@ public class Solution {
     
     public static void helper (int n, int k, int start, List<Integer> item, List<List<Integer>> res){
         if(item.size() == k){
-            //注意这里，必须生成新的 item 实体，因为一直在使用同一个item
+            //在combine中，只有res被返回了，如果仅仅写res.add(item)，item随着combine的结束被销毁。
+            //new 了一个 item后，item的owner是res
             res.add((new ArrayList<Integer>(item)));  
             return;
         }
