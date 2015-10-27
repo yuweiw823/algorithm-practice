@@ -1,0 +1,37 @@
+public Solution{
+    private static boolean pour(int b1, int b2, int value) {
+        if ((value == 0) || (value == Math.abs(b1-b2))) {
+            return true;
+        }
+      
+        if (b1 <= value) {
+            if (pour(b1,b2,value-b1))
+                return true;
+        }
+      
+        if (b2 <=value) {
+            if(pour(b1,b2,value-b2))
+              return true;
+        }
+
+        int diffCapacity = Math.abs(b1-b2);
+        if (value >= diffCapacity) {
+            int remValue = Math.abs(value - Math.abs(b1-b2));
+            if (pour(b1,b2,remValue))
+                return true;
+        }
+
+        return false;
+    }
+}
+
+ 5  3
+(0,0)
+(5,0)   (0,3)
+(2,3)   (3,0)
+(2,0)   (3,3)
+        (5,1)
+        (0,1)
+        (1,0)
+        (1,3)
+        

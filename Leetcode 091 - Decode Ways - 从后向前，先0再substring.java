@@ -34,3 +34,33 @@ public class Solution {
 01~09,27~99()        只能从i-1出发decode，res[i] = res[i-1] [i-2]和[i-1]组成一个两位数，[i]作为个位数出现
 10,20                只能从i-2出发decode，res[i] = res[i-2]
 11~19, 21~26         i-1, i-2出发都能decode, res[i] = res[i-1] + res[i-2]
+
+
+
+正确简便的方法：DP，从后往前扫，先判断0，再判断substring
+public class Solution {
+    public static void main(String[] args){
+        System.out.println(numDecodings("30726"));
+        System.out.println(numDecodings("31726"));
+        
+    }
+    public static int numDecodings(String s) {
+        if (s == null || s.length() == 0) return 0;
+        int len = s.length();
+        int[] dp = new int[len+1];
+        dp[len] = 1;
+        
+        for(int i=len-1; i>=0; i--){
+            if(s.charAt(i)!= '0'){
+                dp[i] = dp[i+1];
+                if(i<len-1 && Integer.parseInt(s.substring(i,i+2))<= 26){
+                    dp[i] += dp[i+2];
+                }
+            }
+        }
+        return dp[0];
+    }
+}
+
+// 3  0  7  2  6
+// 0  0  2  2  1  1 - result:0
