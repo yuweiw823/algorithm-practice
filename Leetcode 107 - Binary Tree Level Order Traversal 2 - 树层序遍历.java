@@ -1,6 +1,9 @@
-Leetcode 102 - Binary Tree Level Order Traversal - 树层序遍历.java
-维持一个queue，储存每一层的Node
-每当遍历到一个Node，将Node的左右结点add到queue中，准备在下层的遍历中使用
+Leetcode 107 - Binary Tree Level Order Traversal 2 - 树层序遍历.java
+// 维持一个queue，储存每一层的Node
+// 每当遍历到一个Node，将Node的左右结点add到queue中，准备在下层的遍历中使用
+
+// 和102代码一样，最后在return res之前
+// Collections.reverse(res);  即可
 
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -32,6 +35,7 @@ public class Solution {
                 level = new LinkedList<Integer>();
             }
         }
+        Collections.reverse(res);
         return res;
     }
     public class TreeNode{
