@@ -1,7 +1,7 @@
 Leetcode 078 - Subset.java
 
 import java.util.*;
-//每个元素都有选与不选两个选择，C++本的解法
+方法1：每个元素都有选与不选两个选择，C++本的解法
 public class Solution {
     public static void main(String args[]){
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -30,7 +30,7 @@ public class Solution {
         //选这个元素
         item.add(nums[step]);
         helper(nums, step+1, item, res);
-        item.remove(item.size()-1); //一直在使用同一个item生成结果，所以要记得remove
+        item.remove(item.size()-1);
     }
 }
 
@@ -67,7 +67,7 @@ helper(nums, 0, [], [[]])
 
 
 import java.util.*;
-//每次在原先的结果集上加入新元素，java http://blog.csdn.net/linhuanmars/article/details/24286377 的解法
+方法2：每次在原先的结果集上加入新元素，java http://blog.csdn.net/linhuanmars/article/details/24286377 的解法
 public class Solution {
     public static void main(String[] args){
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -121,4 +121,21 @@ item: []->[3], [1]->[1,3], [2]->[2,3], [1,2]->[1,2,3]
 
 
 
+方法3：和方法2的思路一样，但没有用递归
+public List<List<Integer>> subsets(int[] S) {
+    List<List<Integer>> res = new  ArrayList<List<Integer>>();
+    res.add(new List<Integer>());
+    if(S == null || S.length == 0) return res;
+
+    Arrays.sort(S);
+    for(int i=0;i<S.length;i++){
+        int size = res.size();
+        for(int j=0;j<size;j++){
+            List<Integer> item = new List<Integer>(res.get(j));
+            item.add(S[i]);
+            res.add(item);
+        }
+    }
+    return res;
+}
 

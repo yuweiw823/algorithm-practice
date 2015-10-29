@@ -12,37 +12,37 @@ public class Solution {
         
     }
   
-    public static List<List<Integer>> subsetsWithDup(int[] nums) {
-        Arrays.sort(nums);
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        if(nums==null || nums.length ==0) return res;
-      
-        ArrayList<Integer> lastSize = new ArrayList<Integer>();  
-        lastSize.add(0); //使用List来储存lastSize，如果用 Integer 容易跳出作用域
-      
-        helper(nums, nums.length-1, res, lastSize);
-      
-        return res;
+public static List<List<Integer>> subsetsWithDup(int[] nums) {
+    Arrays.sort(nums);
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    if(nums==null || nums.length ==0) return res;
+  
+    ArrayList<Integer> lastSize = new ArrayList<Integer>();  
+    lastSize.add(0); //使用List来储存lastSize，如果用 Integer 容易跳出作用域
+  
+    helper(nums, nums.length-1, res, lastSize);
+  
+    return res;
+}
+
+public static void helper(int[] nums, int index, List<List<Integer>> res, List<Integer> lastSize){
+    if(index == -1){
+        res.add(new ArrayList<Integer>());
+        return;
     }
-    
-    public static void helper(int[] nums, int index, List<List<Integer>> res, List<Integer> lastSize){
-        if(index == -1){
-            res.add(new ArrayList<Integer>());
-            return;
-        }
-        helper(nums,index-1, res, lastSize);
-        int size = res.size();
-        int start = 0;
-        if(index > 0 && nums[index] == nums[index-1]){
-            start = lastSize.get(0);
-        }
-        for(int i=start;i<size;i++){
-            List<Integer> item = new ArrayList<Integer>(res.get(i));
-            item.add(nums[index]);
-            res.add(item);
-        }
-        lastSize.set(0, size);
+    helper(nums,index-1, res, lastSize);
+    int size = res.size();
+    int start = 0;
+    if(index > 0 && nums[index] == nums[index-1]){
+        start = lastSize.get(0);
     }
+    for(int i=start;i<size;i++){
+        List<Integer> item = new ArrayList<Integer>(res.get(i));
+        item.add(nums[index]);
+        res.add(item);
+    }
+    lastSize.set(0, size);
+}
 }
 
 helper(nums, 2, [[], [1], [1，1], [2], [1,2], [1,1,2]], 6)

@@ -4,6 +4,9 @@ An empty tree is height-balanced. A non-empty binary tree T is balanced if:
 2) Right subtree of T is balanced
 3) The difference between heights of left subtree and right subtree is not more than 1.
 
+维护一个值：
+>=0 : 层数
+-1  : 不balanced
 
 public class Solution {
     public boolean isBalanced(TreeNode root) {

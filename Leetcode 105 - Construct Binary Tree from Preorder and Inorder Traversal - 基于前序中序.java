@@ -23,7 +23,7 @@ public class Solution {
         root.right = helper(map, preorder, (index-inL+preL)+1, preR, inorder, index+1, inR);
         return root;
     }
-    public static class TreeNode{
+    class TreeNode{
         int val;
         TreeNode left;
         TreeNode right;
