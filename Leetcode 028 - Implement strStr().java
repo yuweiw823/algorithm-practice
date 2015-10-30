@@ -15,12 +15,10 @@ public class Solution {
         
         for(int i=0; ; i++){   //先循环 haystack
             for(int j=0; ; j++){ // 再循环 needle
-                if(j == needle.length()) return i;  
-                if(i+j == haystack.length()) return -1;
-                if(needle.charAt(j) != haystack.charAt(i+j)) break;
+                if(j == needle.length()) return i;  //成功
+                if(i+j == haystack.length()) return -1; //to the end can not find a value
+                if(needle.charAt(j) != haystack.charAt(i+j)) break; 
             }
-            
         }
-        
     }
 }

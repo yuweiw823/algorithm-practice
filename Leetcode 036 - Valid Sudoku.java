@@ -24,7 +24,7 @@ public class Solution {
     
     public static boolean isValidSudoku(char[][] board) {
         for(int i=0; i<9; i++){
-            if(!isValid(board, i, i, 0, 8)) return false;//注意起止顺序，想不出的话就拿逼写一下
+            if(!isValid(board, i, i, 0, 8)) return false;//注意起止顺序，想不出的话就拿笔写一下
             if(!isValid(board, 0, 8, i, i)) return false;
         }
         for(int i=0; i<9; i+=3){  //Step是3的时候的写法
@@ -34,19 +34,16 @@ public class Solution {
         }
         return true;
     }
-  
     
-    //使用Set判断
-    public static boolean isValid(char[][] board, int i1, int i2, int j1, int j2){
-        Set<Integer> singleSet = new HashSet();  //Set是Abstract的，需要initial具体的HashSet()
-
+    //使用boolean[]判断
+    public static boolean isValidUnit(char[][] board, int i1, int i2, int j1, int j2){
+        boolean[] record = new boolean[9];
         for(int i=i1; i<=i2; i++){
             for(int j=j1; j<=j2; j++){
-
                 if(board[i][j] != '.'){
-                    int k = board[i][j]-'0';
-                    if(singleSet.contains(k)) return false;  //Set.contains()
-                    else singleSet.add(k); //Set.add()
+                    int num = board[i][j] - '0';
+                    if(record[num-1]) return false;
+                    else record[num-1] = true;
                 }
             }
         }
