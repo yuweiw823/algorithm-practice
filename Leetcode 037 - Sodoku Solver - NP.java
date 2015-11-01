@@ -21,7 +21,7 @@ public class Solution {
                         board[i][j] = '.';
                     }
                     return false;
-                }
+                } 
             }
         }
         return true;
