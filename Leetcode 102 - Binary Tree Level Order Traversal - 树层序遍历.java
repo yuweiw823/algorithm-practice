@@ -9,35 +9,36 @@ public class Solution {
         List<Integer> level = new ArrayList<Integer>();
         LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
         
-        int lastNum = 1;
-        int curNum = 0;
+        int curNum = 1;
+        int nextNum = 0;
         queue.add(root);   //queue是从后面进
         
         while(!queue.isEmpty()){
             TreeNode cur = queue.poll();
             level.add(cur.val);
-            lastNum--;          //当前层的TreeNode的数量
+            curNum--;          //当前层的TreeNode的数量
             if(cur.left!=null){
                 queue.add(cur.left);
-                curNum++;       //下一层的TreeNode的数量
+                nextNum++;       //下一层的TreeNode的数量
             }
             if(cur.right!=null){
                 queue.add(cur.right);
-                curNum++;
+                nextNum++;
             }
-            if(lastNum == 0){
-                lastNum = curNum;
-                curNum = 0;
+            if(curNum == 0){
+                curNum = nextNum;
+                nextNum = 0;
                 res.add(level);
                 level = new LinkedList<Integer>();
             }
         }
         return res;
     }
-    public class TreeNode{
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x){val = x;}
-    }
+}
+
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x){val = x;}
 }

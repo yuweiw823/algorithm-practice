@@ -1,4 +1,4 @@
-// Leetcode 122 - Best Time to Buy and Sell Stock.java
+// Leetcode 122 - Best Time to Buy and Sell Stock 2.java
 
 public class Solution {
     public int maxProfit(int[] prices) {

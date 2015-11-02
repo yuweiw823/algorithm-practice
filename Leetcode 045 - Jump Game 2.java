@@ -25,7 +25,7 @@ public class Solution {
 	    return count;
 	}
 
-//方法2：看最远的reach
+//方法2：看最远的reach，贪心法
 	public static int jump(int[] nums) {
         int curr = 0, reach = 0, count = 0;
         for(int i=0; i<nums.length; i++){
@@ -39,4 +39,38 @@ public class Solution {
         }
         return count;
     }
+}
+
+
+// 扩展：打印出路径
+
+public class Solution {
+	public static void main(String[] args){
+		int[] nums1 = {2,3,1,1,4};
+		int[] nums2 = {2,3,1,2,0,1};
+		int[] nums3 = {0};
+		List<Integer> res1 = jump(nums1);
+		System.out.println(res1);
+		List<Integer> res2 = jump(nums2);
+		System.out.println(res2);
+		List<Integer> res3 = jump(nums3);
+		System.out.println(res3);    
+	}
+	
+	public static List<Integer> jump(int[] A) {  
+		int last = 0, reach = 0, best = 0;  
+		List<Integer> steps = new ArrayList<Integer>();  
+
+		for (int i = 0; i < A.length; i++) {  
+			if (i > last) {  
+				last = reach;  
+				steps.add(best);  
+			}  
+			if(i+A[i] > reach) {  
+				reach = i+A[i];  
+				best = i;  
+			}
+		}  
+		return steps;  
+	}  
 }
