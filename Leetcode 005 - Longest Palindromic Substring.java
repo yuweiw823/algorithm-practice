@@ -39,3 +39,26 @@ public class Solution {
         return (R-L-1);
     }
 }
+
+
+// 解法2：动态规划
+
+    public static String longestPalindrome(String s) {
+        if (s==null || s.length() == 0) {
+            throw new IllegalArgumentException("Input can not be null or empty String");
+        }
+        int len = s.length();
+        String res = "";
+
+        boolean[][] record = new boolean[len][len];
+
+        for (int i=len-1; i>=0; i--) {
+            for (int j=i; j<len; j++) {
+                record[i][j] = (s.charAt(i) == s.charAt(j)) && (j-i<3 || record[i+1][j-1]);  //j-i<3必须放前面，否则会Index溢出
+                if (record[i][j] && (j-i+1 > res.length())) {
+                    res = s.substring(i, j+1);
+                }
+            }
+        }
+        return res;
+    }

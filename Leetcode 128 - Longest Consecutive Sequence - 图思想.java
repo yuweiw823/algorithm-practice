@@ -1,4 +1,4 @@
-Leetcode 128 - Longest Consecutive Sequence - 图思想java.java
+Leetcode 128 - Longest Consecutive Sequence - 图思想.java
 
 public class Solution {
     public int longestConsecutive(int[] nums) {

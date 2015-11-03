@@ -2,8 +2,6 @@
 
 //方法1：记录每个点左右的最高点，形成 max_left[], max_right[] 两个数组。
 //然后再扫一遍，water += min(left, right) - height[i]
-
-
 public int trap(int[] height) {
     if(height == null || height.length == 0) return 0;
     
@@ -25,8 +23,7 @@ public int trap(int[] height) {
         if(height[j] < bar) {
             water += (bar - height[j]); 
         }
-    }
-    
+    }    
     return water;
 }
 

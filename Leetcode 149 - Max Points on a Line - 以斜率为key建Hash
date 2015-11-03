@@ -1,0 +1,41 @@
+Leetcode 149 - Max Points on a Line - 以斜率为key建HashMap.java
+
+
+// 每次以一个点为基准，以斜率为key建立HashMap，相同斜率的在同一条线上。然后update最大值。
+// 不用考虑截距，因为是以某一个点为基准，相当于把那个点看作(0, 0)。
+public class Solution {
+    public int maxPoints(Point[] points) {
+        if(points == null || points.length == 0) return 0;
+        int globalMax = 1;
+        for(int i=0; i<points.length; i++){
+            HashMap<Double, Integer> map = new HashMap<Double, Integer>();
+            int localMax = 1;
+            int numOfSame = 0;
+            for(int j=i+1; j<points.length; j++){
+                //记得检查会不会有两点在同一个位置上
+                if(points[i].x == points[j].x && points[i].y == points[j].y){
+                    numOfSame++;
+                } else {
+                    double slope = calSlope(points[i], points[j]);
+                    if(map.containsKey(slope)){
+                        map.put(slope, map.get(slope)+1);
+                    } else {
+                        map.put(slope, 2);
+                    }
+                }
+            }
+            for(int value : map.values()){
+                localMax = Math.max(localMax, value);
+            }
+            localMax += numOfSame;  //加上本身和points[i]在同一位置的点；
+            globalMax = Math.max(globalMax, localMax);
+        }
+        return globalMax;
+    }
+    
+    public double calSlope(Point a, Point b){
+        if(a.x == b.x) return (double)Integer.MAX_VALUE;
+        if(a.y == b.y) return 0.0;
+        return (double)(a.y - b.y) / (double)(a.x - b.x);
+    }
+}
