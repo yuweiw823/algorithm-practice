@@ -27,6 +27,41 @@ public class Solution {
             pointer = pointer.next;
         }
     }
+
+    //必须使用两个指针才能完成
+    //创建一个duumy Node(0),
+    // 0 -> 1 -> 1 -> 2 -> 2 -> 2 -> 3 -> 3 -> 3
+    // p2   p1
+    public static ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode p1 = head;
+        ListNode p2 = dummy;
+      
+        while(p1!=null){
+            while(p1.next!=null && p1.next.val == p2.next.val){ //注意比较的是next的值
+                p1 = p1.next;
+            }
+            p2.next = p1;
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return dummy.next;
+    }
+
+}
+
+    
+class ListNode{
+    int val;
+    ListNode next;
+    ListNode (int x) {
+        val = x;
+    }
+}
+
+
+
     //自己的思路：试图用一个指针是不行的，会出现这种状况：
     //Input: 1->2->2->2->3->3->3
     //Output: 1->2->2->3->3
@@ -62,32 +97,3 @@ public class Solution {
         return head;
     }
 
-    //必须使用两个指针才能完成
-    //创建一个duumy Node(0),
-    // 0 -> 1 -> 1 -> 2 -> 2 -> 2 -> 3 -> 3 -> 3
-    // p2   p1
-    public static ListNode deleteDuplicates(ListNode head) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode p1 = head;
-        ListNode p2 = dummy;
-      
-        while(p1!=null){
-            while(p1.next!=null && p1.next.val == p2.next.val){ //注意比较的是next的值
-                p1 = p1.next;
-            }
-            p2.next = p1;
-            p1 = p1.next;
-            p2 = p2.next;
-        }
-        return dummy.next;
-    }
-
-
-  
-    public static class ListNode {
-        public int val;
-        public ListNode next;
-        public ListNode(int x) { val = x; }
-    }
-}

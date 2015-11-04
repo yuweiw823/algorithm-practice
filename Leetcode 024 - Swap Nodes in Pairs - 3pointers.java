@@ -43,11 +43,12 @@ public class Solution {
         return dummy.next;  //dummy 用于最后传递0
     } 
   
-    public static class ListNode{
-        public int val;
-        public ListNode next;
-        public ListNode (int x) {
-            val = x;
-        }
+}
+    
+class ListNode{
+    int val;
+    ListNode next;
+    ListNode (int x) {
+        val = x;
     }
 }

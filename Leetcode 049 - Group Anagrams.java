@@ -13,38 +13,35 @@ public class Solution {
     }
   
   
-    public static List<List<String>> groupAnagrams(String[] strs) {
+    public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> res = new ArrayList<List<String>>();
         HashMap<String, List<String>> map = new HashMap<String, List<String>>();
-      
-        String key;
-        List<String> eachGroup;
-      
+        
         for(String s:strs){
-            key = sortToKey(s);
-            if(!map.containsKey(key)){
-                eachGroup = new ArrayList<String>();
+            String key = sortToKey(s);
+            List<String> eachGroup;
+            if(map.containsKey(key)){
+                eachGroup = map.get(key);
                 eachGroup.add(s);
                 map.put(key, eachGroup);
             } else {
-                eachGroup = map.get(key);
+                eachGroup = new ArrayList<String>();
                 eachGroup.add(s);
                 map.put(key, eachGroup);
             }
         }
-        for(List<String> addEachGroup : map.values()){
-            if(addEachGroup.size()>0){
+        for(List<String> eachGroup : map.values()){
+            if(eachGroup.size()>0){
                 Collections.sort(eachGroup);
-                res.add(addEachGroup);
-                
+                res.add(eachGroup);
             }
         }
         return res;
     }
     
-    public static String sortToKey(String strs){
+    public String sortToKey(String strs){
         char[] c = strs.toCharArray();
         Arrays.sort(c);
-        return Arrays.toString(c);
+        return Arrays.toString(c);  //注意Arrays.toString(_value)
     }
 }

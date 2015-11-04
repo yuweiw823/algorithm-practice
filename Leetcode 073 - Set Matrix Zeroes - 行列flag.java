@@ -12,43 +12,6 @@ public class Solution {
             System.out.println("");
         }
     }
-    
-    public static void setZeroes(int[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-        
-        
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++){
-                if(matrix[i][j] == 0){
-                    matrix[0][j] = 0;
-                    matrix[i][0] = 0;
-                }
-            }
-        }
-        flsg
-        for(int i=0; i<m; i++){
-            // 检查每一行的第0列，将相应的行变为0；
-            // 但如果matrix[0][0] == 0, 此时第0行的所有元素也变为0，
-            // 影响到下一个for操作，导致整个matrix都变为0
-            // 正确的做法是为第0行和第0列再设一个flag进行记录。
-            if(matrix[i][0] == 0){
-                int j=1;
-                while(j<n){
-                    matrix[i][j++] = 0;
-                }
-            }
-        }
-        //
-        for(int j=0; j<n; j++){
-            if(matrix[0][j] == 0){
-                int i=1;
-                while(i<m){
-                    matrix[i++][j] = 0;
-                }
-            }
-        }
-    }
 
     //正确的解法：
     public void setZeroes(int[][] matrix) {

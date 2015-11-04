@@ -32,7 +32,6 @@ public class Solution {
         // 3 * 6 = 18
         // resNum[14, 33, 18]
         
-        
         int carry = 0;
         int num = 0;
         int digit = 0;

@@ -18,10 +18,10 @@ public class Solution {
 
         int index2=index1;
         //判断连续相等的while循环！记住！
-        while(index2<nums.length-1){
-            if(nums[index2+1] != target) break; //注意这里的+1
-            else index2++;
-        }
+while(index2<nums.length-1){
+    if(nums[index2+1] != target) break; //注意这里的+1
+    else index2++;
+}
         res[1] = index2;
         return res;
     }

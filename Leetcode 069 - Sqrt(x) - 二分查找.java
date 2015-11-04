@@ -14,7 +14,7 @@ public class Solution {
 
         while(L < R){
            int M = (R+L)/2;
-            if(M <= x/M) {  //注意判断条件，以及不能写成 M*M <= x，否则会溢出
+            if(x/M >= M) {  //注意判断条件，以及不能写成 M*M <= x，否则会溢出
                 L = M+1;
             } else{            
                 R = M-1;

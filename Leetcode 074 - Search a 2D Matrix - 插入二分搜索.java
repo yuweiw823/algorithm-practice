@@ -11,7 +11,6 @@ public class Solution {
     }
     
     public static boolean searchMatrix(int[][] matrix, int target) {
-    public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length;
         int n = matrix[0].length;
         int[] cols = new int[matrix.length];
@@ -42,4 +41,5 @@ public class Solution {
             }
         }
         return (A[L] < key) ? L+1 : L;
+    }
 }

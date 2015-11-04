@@ -30,7 +30,7 @@ public class Solution {
         int curr = 0, reach = 0, count = 0;
         for(int i=0; i<nums.length; i++){
         	// curr < i 就是要跳的时候，不需要考虑是否一定能跳到最后一位，
-            if(curr < i){
+            if(i > curr){
                 curr = reach;
                 count++;
             }
@@ -41,9 +41,7 @@ public class Solution {
     }
 }
 
-
 // 扩展：打印出路径
-
 public class Solution {
 	public static void main(String[] args){
 		int[] nums1 = {2,3,1,1,4};
@@ -57,17 +55,16 @@ public class Solution {
 		System.out.println(res3);    
 	}
 	
-	public static List<Integer> jump(int[] A) {  
-		int last = 0, reach = 0, best = 0;  
+	public static List<Integer> jump(int[] nums) {  
+		int curr = 0, reach = 0, best = 0;  
 		List<Integer> steps = new ArrayList<Integer>();  
-
 		for (int i = 0; i < A.length; i++) {  
-			if (i > last) {  
-				last = reach;  
+			if (i > curr) {  
+				curr = reach;  
 				steps.add(best);  
 			}  
-			if(i+A[i] > reach) {  
-				reach = i+A[i];  
+			if(i+nums[i] > reach) {  
+				reach = i+nums[i];  
 				best = i;  
 			}
 		}  

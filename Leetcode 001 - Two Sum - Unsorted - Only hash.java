@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.*;
 
 //Solution 1 - Hashmap
+O(n)
+O(n)
 class Solution {
     public static void main(String[] args) {
         int[] input = {2,3,7};
@@ -33,6 +35,11 @@ class Solution {
 import java.io.*;
 import java.util.*;
 
+sort一下，O(nlogn+n+logn) = O(nlogn)
+
+// 如果已经sort过了
+O(n+logn) = O(n)
+O(1)
 class Solution {
     public static void main(String[] args) {
         int[] input = {2, 7, 11, 15};
