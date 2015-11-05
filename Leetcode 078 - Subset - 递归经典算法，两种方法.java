@@ -15,8 +15,7 @@ public class Solution {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         if(nums==null || nums.length ==0) return res;
-        List<Integer> item = new ArrayList<Integer>();
-        helper(nums, 0, item, res);
+        helper(nums, 0, new ArrayList<Integer>(), res);
         return res;
     }
     

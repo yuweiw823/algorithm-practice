@@ -32,9 +32,7 @@ public class Solution {
         int digit = 0;
         while(i<str.length()){
             digit = str.charAt(i) - '0';
-            if(digit > 9 || digit < 0) {
-                break;
-            }
+            if(digit > 9 || digit < 0) break; //这句很重要！比如“12de13” 结果应该是12
             //注意点：
             //sign 指明
             //要 + - digit
