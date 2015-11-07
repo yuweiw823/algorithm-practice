@@ -21,13 +21,12 @@ public class Solution {
         String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         LinkedList<String> res = new LinkedList();
         if(digits == null || digits.length() == 0) return res;
-        res.add("");
-        
+        res.offer("");
         
         for(int i=0; i<digits.length(); i++){     //第一层循环
             int digit = digits.charAt(i) - '0';
             while(res.peek().length() == i){      //第二层循环，注意这个判断条件，非常巧妙
-                String t = res.remove();          //reomve() 既得到 prev-res，又 keep 了 queue
+                String t = res.poll();          //reomve() 既得到 prev-res，又 keep 了 queue
                 for(char s : mapping[digit].toCharArray()){ //第三层循环
                     res.add(t+s);
                 }
