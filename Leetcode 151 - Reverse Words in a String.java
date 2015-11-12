@@ -13,7 +13,6 @@ public class Solution {
         int j = s.length(); // j used to check the endpoint of substring
         
         for(int i=s.length()-1; i>=0; i--){
-            //每当遇到空格，j都会随着i向前挪动。所以连续空格也没有问题。
             if(s.charAt(i) == ' '){
                 j = i;
             } else if(i==0 || s.charAt(i-1) == ' '){
