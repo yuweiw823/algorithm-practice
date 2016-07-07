@@ -19,6 +19,7 @@ http://www.jiuzhang.com/solutions/inorder-successor-in-binary-search-tree/
  *     TreeNode(int x) { val = x; }
  * }
  */
+//其实还是inorder遍历，但不是一次print全部，而是要一个给一个 
 public class Solution {
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         // write your code here

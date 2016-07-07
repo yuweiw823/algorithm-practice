@@ -1,10 +1,6 @@
 Lintcode 108 - Palindrome Partitioning II.java
 http://www.lintcode.com/en/problem/palindrome-partitioning-ii/
 public class Solution {
-    /**
-     * @param s a string
-     * @return an integer
-     */
     public int minCut(String s) {
         // write your code here
         if (s == null || s.length() == 0) {

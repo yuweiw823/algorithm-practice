@@ -1,16 +1,17 @@
 Leetcode 206 - Reverse Linked List - 重要.java
 
 方法1：iterative
-public ListNode reverse(ListNode head){
-    ListNode cur = head;
-    ListNode pre = null;
-    while(cur != null){
-        ListNode next = cur.next;
-        cur.next = pre;
-        pre = cur;
-        cur = next;
+public ListNode reverse(ListNode head) {
+    // write your code here
+    ListNode prev = null;
+    while(head != null) {
+        ListNode temp = head.next;
+        head.next = prev;
+        prev = head;
+        head = temp;
     }
-    return pre;
+    
+    return prev;
 }
 
 方法2：recursive

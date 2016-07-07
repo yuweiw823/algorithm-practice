@@ -1,5 +1,7 @@
 //Lintcode 062 - Search in Rotated Sorted Array.java
 //http://www.lintcode.com/en/problem/search-in-rotated-sorted-array/
+//Leetcode 033 - Search in Rotated Sorted Array.java
+
 
 public class Solution {
     /** 

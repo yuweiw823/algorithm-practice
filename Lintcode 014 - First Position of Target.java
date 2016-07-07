@@ -16,7 +16,7 @@ class Solution {
         while (start + 1 < end) {
             int mid = start + (end - start) / 2;
             if (nums[mid] == target) {
-                end = mid; //关键句，唯一与模板不同的地方
+                end = mid; //关键句，唯一与模板不同的地方。一旦array有重复元素，就上这一句
             } else if (nums[mid] < target) {
                 start = mid;
             } else {

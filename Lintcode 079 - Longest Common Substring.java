@@ -12,13 +12,17 @@ j
 0 1 2 3 4
 
 f[i][j]
-    i
-    0 1 2 3 4
-j 0 0 0 0 0 0
-  1 0 0 0 1 0
+    j     <=n 
+    0 1 2 3 4 
+i 0 0 0 0 0 0
+  1 0 0 0 0 0
   2 0 0 1 0 0
-  3 0 0 0 2 0
+  3 0 1 0 2 0
   4 0 0 0 0 0
+<=
+m
+
+longest == 2  
 
 关键语句：
 注意一定有这个 longest 来记录最长的
@@ -29,12 +33,7 @@ j 0 0 0 0 0 0
 
 
 public class Solution {
-    /**
-     * @param A, B: Two string.
-     * @return: the length of the longest common substring.
-     */
     public int longestCommonSubstring(String A, String B) {
-        // write your code here
         if (A == null || A.length() == 0 || B == null || B.length() == 0) {
             return 0;
         }

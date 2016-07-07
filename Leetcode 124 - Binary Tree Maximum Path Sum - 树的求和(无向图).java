@@ -13,7 +13,7 @@ public class Solution {
         if(root == null) return 0;
         int lmax = dfs(root.left);
         int rmax = dfs(root.right);
-        max = Math.max(max, root.val + lmax + rmax);
+        // max = Math.max(max, root.val + lmax + rmax);
         return Math.max(0, root.val + Math.max(lmax, rmax));
     }
 }

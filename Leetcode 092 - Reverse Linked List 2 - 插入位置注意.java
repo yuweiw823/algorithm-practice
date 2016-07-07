@@ -1,4 +1,58 @@
 //Leetcode 092 - Reverse Linked List 2 - 插入位置注意.java
+
+Lintcode 解法：
+/**
+ * Definition for ListNode
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param ListNode head is the head of the linked list 
+     * @oaram m and n
+     * @return: The head of the reversed ListNode
+     */
+    public ListNode reverseBetween(ListNode head, int m , int n) {
+        // write your code
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        head = dummy;
+        
+        for (int i = 1; i < m; i++) {
+            if(head == null) {
+                return null;
+            }
+            head = head.next;
+        }
+        
+        ListNode perm = head;
+        ListNode nodem = head.next;
+        ListNode noden = head.next;
+        ListNode nnext = noden.next;
+        for(int i = m; i < n; i++) {
+            if(nnext == null) {
+                return null;
+            }
+            ListNode temp = nnext.next;
+            nnext.next = noden;
+            noden = nnext;
+            nnext = temp;
+        }
+        
+        nodem.next = nnext;
+        perm.next = noden;
+        
+        return dummy.next;
+    }
+}
+
+
  
 // 注意：不是交换 m 和 n,是反转 m-n这一段的链表
 public class Solution {

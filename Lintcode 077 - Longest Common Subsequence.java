@@ -1,4 +1,4 @@
-Lintcode 077 - Longest Common Subsequence
+Lintcode 077 - Longest Common Subsequence.java
 http://www.lintcode.com/en/problem/longest-common-subsequence/
 
 i
@@ -27,12 +27,7 @@ j 0 0 0 0 0 0
     }
 
 public class Solution {
-    /**
-     * @param A, B: Two strings.
-     * @return: The length of longest common subsequence of A and B.
-     */
     public int longestCommonSubsequence(String A, String B) {
-        // write your code here
         if(A == null || A.length() == 0 || B == null || B.length() == 0) {
             return 0;
         }
