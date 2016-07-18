@@ -14,6 +14,7 @@ public class Solution {
     //     [1, 1, 2, 3, 1]
     //     [1, 1, 2, 3, 1, 4]
     
+    //动态规划解法
     public int longestIncreasingSubsequence(int[] nums) {
         // write your code here
         if(nums == null || nums.length == 0) {
@@ -36,4 +37,7 @@ public class Solution {
         
         return max;
     }
+
+    //二分法查找解法，也需要掌握
+    //http://www.jiuzhang.com/solutions/longest-increasing-subsequence/
 }
