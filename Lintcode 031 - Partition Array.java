@@ -1,6 +1,48 @@
  Lintcode 31 - Partition Array.java
 
 public class Solution {
+	/** 
+     *@param nums: The integer array you should partition
+     *@param k: As description
+     *return: The index after partition
+     */
+    public int partitionArray(int[] nums, int k) {
+	    //write your code here
+	    if(nums == null || nums.length == 0) {
+	        return 0;
+	    }
+	    
+	    int i = 0, j = nums.length - 1;
+	    
+	    while(i <= j) {
+	        while(i <= j && nums[i] < k) {
+	            i++;
+	        }
+	        while(i <= j && nums[j] >= k) {
+	            j--;
+	        }
+	        
+	        if(i <= j) {
+	            swap(i, j, nums);
+	            i++;
+	            j--;
+	        }
+
+	    }
+	    
+	    return j + 1;
+    }
+    
+    private void swap(int i, int j, int[] nums) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+
+
+
+public class Solution {
     public int partitionArray(int[] nums, int k) {
 	    //write your code here
 	    if(nums == null || nums.length == 0) {

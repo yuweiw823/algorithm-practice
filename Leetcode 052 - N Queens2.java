@@ -10,6 +10,13 @@ public class Solution {
 	}
 
     public static int totalNQueens(int n) {
+        //第几个col，皇后放在了哪个row里
+        //e.g [0,1,2]
+        // # 0 0
+        // 0 # 0
+        // 0 0 #
+
+
         int[] col = new int[n];
         List<Integer> res = new ArrayList<Integer>();
         res.add(0);
@@ -18,8 +25,6 @@ public class Solution {
     }
     
     public static void helper(int n, int row, int[] col, List<Integer>res){
-    	//关于这里为什么一定要用一个Arraylist来储存结果。如果用int，则传递进来的仅仅是引用而不是本身，无法记录；
-
         if(n==row){
             res.set(0, res.get(0)+1);
             return;
@@ -34,7 +39,7 @@ public class Solution {
     }
     
     public static boolean checker(int[] col,int row){
-        for(int i=0; i<row; i++){
+        for(int i=0; i < row; i++){
             if(col[row] == col[i] || Math.abs(col[row] - col[i]) == row - i) return false;
         }
         return true;
