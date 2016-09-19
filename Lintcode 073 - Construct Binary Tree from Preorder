@@ -1,0 +1,54 @@
+Lintcode 073 - Construct Binary Tree from Preorder and Inorder Traversal.java
+
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+ 
+//Recursive
+public class Solution {
+    /**
+     *@param preorder : A list of integers that preorder traversal of a tree
+     *@param inorder : A list of integers that inorder traversal of a tree
+     *@return : Root of a tree
+     */
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        // write your code here
+        if(preorder.length != inorder.length) {
+            return null;
+        }
+        
+        return myBuildTree(inorder, 0, inorder.length - 1, preorder, 0, preorder.length - 1);
+    }
+    
+    public TreeNode myBuildTree(int[] inorder, int instart, int inend, int[] preorder, int prestart, int preend) {
+        if(instart > inend) {
+            return null;
+        }
+        
+        TreeNode root = new TreeNode (preorder[prestart]);
+        
+        int rootPos = findPos(inorder, preorder[prestart]);
+        
+        root.left  = myBuildTree(inorder, instart, rootPos-1, preorder, prestart+1, prestart+(rootPos-instart));
+        root.right = myBuildTree(inorder, rootPos+1, inend, preorder, preend-(inend-rootPos)+1, preend);
+        
+        return root;
+    }
+    
+    public int findPos(int[] inorder, int rootValue) {
+        for(int i = 0; i < inorder.length; i++) {
+            if (inorder[i] == rootValue) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
