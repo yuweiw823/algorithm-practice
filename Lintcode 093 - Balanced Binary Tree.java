@@ -31,20 +31,17 @@ public class Solution {
     }
     
     //判断左右子树返回的Max Depth相差是否大于1
-    private int MaxDepth(TreeNode root) {
-        if (root == null) {
+    public int maxDepth(TreeNode root) {
+        if(root == null) {
             return 0;
         }
-        int left = MaxDepth(root.left);
-        int right = MaxDepth(root.right);
-        if (Math.abs(left - right) > 1) {
-            return -1;
-        } 
-        if (left < 0 || right < 0) {
+        
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        
+        if(left <= -1 || right <= -1 || Math.abs(left - right) > 1) {
             return -1;
         }
+        
         return Math.max(left, right) + 1;
-        
-        
-    }
 }

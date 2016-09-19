@@ -19,6 +19,12 @@ public class Solution {
             int left = i + 1;
             int right = nums.length - 1;
             
+            // 整个循环必须从头到尾全部走一遍。不存在找到一个最优解直接quit的情况
+            // [1, 2, 4, 6, 8, 15]
+            // 1 + 2 + 15 = 18
+            // 4 + 6 + 8 = 18
+            // 所以中间某三个数相加可能会出现同样的结。
+            // keep一个 best 值，每次都跟它比较。
             while(left < right) {
                 int sum = nums[i] + nums[left] + nums[right];
                 
