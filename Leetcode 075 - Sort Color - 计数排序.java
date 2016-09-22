@@ -1,5 +1,43 @@
 //Leetcode 075 - Sort Color - 计数排序.java
 
+//Quick Sort
+// 用left keep 需要排序的左边界（left 以左，全部是0）
+// 用right keep 需要排序的右边界（right 以右，全部是2）
+// i用作pointer
+public class Solution {
+    public void sortColors(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return;
+        }
+        
+        int i = 0;
+        int left = 0;
+        int right = nums.length - 1;
+        
+        while(i <= right) {
+            if(nums[i] == 1) {
+                i++;
+            }else if(nums[i] == 0) {
+                swap(left, i, nums);
+                i++;
+                left++;
+            } else {
+                swap(i, right, nums);
+                right--;
+            }
+        }
+    }
+    
+    public void swap(int a, int b, int[] nums) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    }
+}
+
+
+
+//这个事什么鬼。。。
 public class Solution {
     public static void main(String[] args){
         int[] nums = {2,1,2,0,1,1,1,0};
