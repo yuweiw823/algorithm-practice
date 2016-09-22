@@ -1,14 +1,9 @@
 //Leetcode 008 - String to Integer (atoi).java
 
 //注意点：
-1. trim（）
-2. null
-3. sign（+-）
-4. charAt(i) - ‘0’ 范围
-5. MAX_VALUE
-    - 指明sign
-    - -或+ digit
-    - result 此时还没有符号
+1. null, ""
+2. "   -334asdagf45345"
+3. > Integer.MAX_VALUE || < Integer.MIN_VALUE;
     
 public class Solution {
     public static void main (String[] args){
@@ -35,8 +30,8 @@ public class Solution {
             if(digit > 9 || digit < 0) break; //这句很重要！比如“12de13” 结果应该是12
             //注意点：
             //sign 指明
-            //要 + - digit
             //result 此时还没有正负，所以应时 result > -(...)
+            //是 result * 10 + digit 的逆运算
             if(sign == 1 && result > (Integer.MAX_VALUE-digit) / 10){
                 result = Integer.MAX_VALUE;
                 break;
@@ -52,9 +47,11 @@ public class Solution {
     }
 }
 
-为什么要 -digit 和 + digit:
-以 overflow 的 MAX.VALUE+1 (2147483648)为例：
 
-result = 214748364
-(Integer. MAX_VALUE-digit )/10) = (2147483647 - 8) / 10 = 214748363   //直接return MAX_VALUE
-(Integer. MAX_VALUE )/10) = 2147483647 / 10 = 214748364 //不return MAX_VALUE, 会在下一步引发overflow
+
+// 为什么要 -digit 和 + digit:
+// 以 overflow 的 MAX.VALUE+1 (2147483648)为例：
+
+// result = 214748364
+// (Integer. MAX_VALUE-digit )/10) = (2147483647 - 8) / 10 = 214748363   //直接return MAX_VALUE
+// (Integer. MAX_VALUE )/10) = 2147483647 / 10 = 214748364 //不return MAX_VALUE, 会在下一步引发overflow
