@@ -22,11 +22,20 @@ public class Solution {
 如果输入只有一个结点的树，且其值为Integer的上界或下界，结果错误
 public class Solution {
     public boolean isValidBST(TreeNode root) {
-        return helper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        if(root == null) {
+            return true;
+        }
+        return myIsValidBST(root, (long)Integer.MIN_VALUE - 1, (long)Integer.MAX_VALUE + 1);
     }
-    public boolean helper(TreeNode root, int min, int max){
-        if(root == null) return true;
-        if(root.val <= min || root.val >= max) return false;
-        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+    
+    public boolean myIsValidBST(TreeNode root, long min, long max) {
+        if(root == null) {
+            return true;
+        }
+        
+        if(root.val <= min || root.val >= max) {
+            return false;
+        }
+        return myIsValidBST(root.left, min, root.val) && myIsValidBST(root.right, root.val, max);
     }
 }

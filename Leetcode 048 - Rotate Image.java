@@ -36,24 +36,29 @@ public class Solution {
 }
 
 //方法1: 题目是return void，且矩阵是正方形, 用一个空[][]作temp
+public class Solution {
     public void rotate(int[][] matrix) {
-
-        int rows = matrix.length;
-        int cols = matrix[0].length;
+        if(matrix == null || matrix.length <= 1) {
+            return;
+        }
         
-        int[][] res = new int [cols][rows];
-        for(int j=0; j<cols; j++){
-            for(int i=0; i<rows; i++){
-                res[j][i] = matrix[rows-i-1][j]; 
+        int n = matrix.length;
+        
+        int[][] result = new int[n][n];
+        
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                result[i][j] = matrix[n - 1 - j][i];
             }
         }
         
-        for(int i=0; i<rows; i++){
-            for(int j=0; j<cols; j++){
-                matrix[i][j] = res[i][j];
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                matrix[i][j] = result[i][j];
             }
         }
     }
+}
 
 //方法2: 在本身的矩阵中完成
 //左上片和右上片交换（不包括对角线），再上半片和下半片交换

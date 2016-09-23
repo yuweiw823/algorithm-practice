@@ -1,41 +1,30 @@
 Leetcode 116&117 - Populating Next Right Pointers in Each Node - 树的其它.java
 
-相当于层序遍历
-第一层(主要操作层)，curHead, curManager来将下一层的node推入栈中
-第二层，记录nextHead，同时在curManager的指挥下，使用p将各个node连接起来
-
+//方法1：BFS 层序遍历树
 public class Solution {
     public void connect(TreeLinkNode root) {
-        if(root == null) return;
-        TreeLinkNode curHead = root;
-        TreeLinkNode nextHead = null;
-        TreeLinkNode p = null;
+        if(root == null) {
+            return;
+        }
         
-        while(curHead!=null){
-            TreeLinkNode curManager = curHead;
-            while(curManager != null){
-                if(curManager.left!=null){
-                    if(nextHead == null){
-                        nextHead = curManager.left;
-                        p = nextHead;
-                    } else{
-                        p.next = curManager.left;
-                        p = p.next;
-                    }
+        Queue<TreeLinkNode> Q = new LinkedList<TreeLinkNode>();
+        
+        Q.offer(root);
+        while(!Q.isEmpty()) {
+            int size = Q.size();
+            for(int i = 0; i < size; i++) {
+                TreeLinkNode curr = Q.poll();
+                TreeLinkNode currNext = (i == size - 1) ? null : Q.peek();
+                curr.next = currNext;
+                
+                if(curr.left != null) {
+                    Q.offer(curr.left);
                 }
-                if(curManager.right!=null){
-                    if(nextHead == null){
-                        nextHead = curManager.right;
-                        p = nextHead;
-                    } else {
-                        p.next = curManager.right;
-                        p = p.next;
-                    }
+                
+                if(curr.right != null) {
+                    Q.offer(curr.right);
                 }
-                curManager = curManager.next;
             }
-            curHead = nextHead;
-            nextHead = null;   //这一步不能忘！
         }
     }
 }

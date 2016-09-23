@@ -7,16 +7,20 @@ public class Solution {
         System.out.println(res + "");
     }
     
-    public static int titleToNumber(String s) {
-        if(s == null || s.length() == 0) return 0;
-        int res = 0;
-        
-        for(int i=0; i<s.length(); i++){
-            char c = s.charAt(i);
-            int digit = c-'A' + 1;
-            System.out.println(digit+"");
-            res = res * 26 + digit; 
+    public int titleToNumber(String s) {
+        if(s == null || s.length() == 0) {
+            return 0;
         }
-        return res;
+        
+        int result = 0;
+        int digit = 0;
+        
+        for(int i = 0; i < s.length(); i++) {
+            char curr = s.charAt(i);
+            digit = curr - 'A' + 1;
+            result = result * 26 + digit;
+        }
+        
+        return result;
     }
 }

@@ -28,31 +28,35 @@ public class Solution {
       
     }
   
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int num = 0;
-        int carry = 0;
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if(l1 == null || l2 == null) {
+            return null;
+        }
+        
         int digit = 0;
+        int carry = 0;
+        ListNode dummy = new ListNode(0);
+        ListNode p = dummy;
         
-        if (l1 == null && l2== null) return null;
-        
-        ListNode p = new ListNode(0);
-        ListNode head = p;
-        
-        while(l1 != null || l2 != null || carry != 0){
-            if (l1 == null) l1 = new ListNode(0);
-            if (l2 == null) l2 = new ListNode(0);
+        while(l1 != null || l2 != null || carry != 0) {
+            if(l1 == null) {
+                l1 = new ListNode(0);
+            }
+            if(l2 == null) {
+                l2 = new ListNode(0);
+            }
             
-            num = l1.val + l2.val + carry;
-            digit = num % 10;
-            carry = num / 10;
+            digit = l1.val + l2.val + carry;
+            carry = digit / 10;
+            digit = digit % 10;
             
             p.next = new ListNode(digit);
             p = p.next;
             l1 = l1.next;
             l2 = l2.next;
-            
         }
-        return head.next;
+        
+        return dummy.next;
     }
 }
 

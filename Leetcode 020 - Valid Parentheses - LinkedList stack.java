@@ -16,18 +16,21 @@ public class Solution {
         HashMap<Character, Character> map = new HashMap<Character, Character>(){{
             put('(', ')'); put('{', '}'); put('[', ']');
         }};
-        LinkedList<Character> stack = new LinkedList<Character>();
         
-        for(int i=0; i<s.length(); i++){
-            char c = s.charAt(i);
-            if(map.containsKey(c)){
-                stack.push(map.get(c));
+        Stack<Character> stack = new Stack<Character>();
+        for(int i = 0; i < s.length(); i++) {
+            char curr = s.charAt(i);
+            if(map.containsKey(curr)) {
+                stack.push(map.get(curr));
             } else {
-                if(stack.isEmpty() || (stack.peek() != c)) return false; //not match
-                else stack.pop(); //match
+                if(stack.isEmpty() || stack.peek() != curr) {
+                    return false;
+                } else {
+                    stack.pop();
+                }
             }
         }
-        if(stack.isEmpty()) return true;
-        else return false;
+        
+        return stack.isEmpty();
     }
 }
