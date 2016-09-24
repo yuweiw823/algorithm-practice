@@ -1,0 +1,53 @@
+Leetcode 117 - Populating Next Right Pointers in Each Node 2 - 树的其它.java
+
+
+/**
+ * Definition for binary tree with next pointer.
+ * public class TreeLinkNode {
+ *     int val;
+ *     TreeLinkNode left, right, next;
+ *     TreeLinkNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        if(root == null) {
+            return;
+        }
+        
+        TreeLinkNode curr = root;
+        TreeLinkNode child;
+        TreeLinkNode theLeft;
+        
+        while(curr != null) {
+            child = null;
+            theLeft = null;
+            
+            while(curr != null) {
+                if(theLeft == null) {
+                    theLeft = curr.left != null ? curr.left : curr.right;
+                }
+                
+                if(curr.left != null) {
+                    if(child != null) {
+                        child.next = curr.left;
+                        child = child.next;
+                    } else {
+                        child = curr.left;
+                    }
+                }
+                
+                if(curr.right != null) {
+                    if(child != null) {
+                        child.next = curr.right;
+                        child = child.next;
+                    } else {
+                        child = curr.right;
+                    }
+                }
+                curr = curr.next;
+            }
+            curr = theLeft;
+        }
+    }
+}

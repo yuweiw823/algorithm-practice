@@ -15,3 +15,23 @@ public class Solution {
         return res.toString();
     }
 }
+
+
+public class Solution {
+    public String convertToTitle(int n) {
+        if (n <= 0) {
+            return "";
+        }
+        
+        StringBuffer result = new StringBuffer();
+        int rest = n;
+        while(rest > 0) {
+            int digit = (rest - 1) % 26;  //注意这里的 -1，
+            char c = (char)('A'+ digit);
+            result.insert(0, c);
+            
+            rest = (rest - 1) / 26;
+        }
+        return result.toString();
+    }
+}

@@ -41,6 +41,28 @@ public class Solution {
     }
 }
 
+或者这么写：
+public class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || root == p || root == q) {
+            return root;
+        }
+        
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        
+        if(left == null) {
+            return right;
+        }
+        
+        if(right == null) {
+            return left;
+        }
+        
+        return root;
+    }
+}
+
 //这道题没有提供父节点的 定义，如果有父节点
 方法二：从A点出发直到 root 组成一个List，从B点出发直到 root 生成另一条 List，从两条List的最后往前找最前面的共同点。
 public class Solution {
