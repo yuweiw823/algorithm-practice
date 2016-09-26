@@ -1,61 +1,36 @@
 //LeetCode 16 - 3Sum Closet
 
 
-class Solution {
-    public static void main(String[] args) {
-        int[] nums = {-1, -5, 6, 4, 7};
-        int res = threeSumClosest(nums, 1);
-        System.out.println(res);
-    }
-    //Leetcode 15 相同的方法
-    //使用 3 个 pointer，第一个i控制循环，另两个在 i 后的区间内，一个从前往后，一个从后往前，夹逼。
-    public static int threeSumClosest(int[] nums, int target) {
-        Arrays.sort(nums);
-        
-        int i=0; 
-        int last = nums.length-1;
-        int result = nums[i]+nums[i+1]+nums[last];
-        while (i < last){
-            int j=i+1, k=last;
-            while(j<k){
-                int sum = nums[i] + nums[j] + nums[k];
-                if(sum < target ) j++;
-                else k--;
-                
-                if (Math.abs(sum - target) < Math.abs(result - target)){
-                    result = sum;
-                }
-            }
-            i++;
-        }
-        return result;
-    }
-}
 
-class Solution {
-    public static void main(String[] args) {
-        int[] nums = {-1, -5, 6, 4, 7};
-        int res = threeSumClosest(nums, 1);
-        System.out.println(res);
-    }
-    
-    //还是同样地方法，但for循环更清晰
-    public static int threeSumClosest(int[] nums, int target) {
-        Arrays.sort(nums);
+//for 循环在最外面
+//只是输出best，所以不用像3sum一样考虑跳过duplicant
+public class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        if(nums == null || nums.length < 3) {
+            return -1;
+        }
         
-        int result = nums[0]+nums[1]+nums[nums.length-1];
-        for(int i=0; i<nums.length-1; i++){
-            int j=i+1, k=nums.length-1;
-            while(j<k){
-                int sum = nums[i] + nums[j] + nums[k];
-                if(sum < target ) j++;
-                else k--;
+        Arrays.sort(nums);
+        int bestSum = nums[0] + nums[1] + nums[2];
+        for(int i = 0; i < nums.length; i++) {
+            int start = i + 1;
+            int end = nums.length - 1;
+            
+            while(start < end) {
+                int sum = nums[i] + nums[start] + nums[end];
+                if(Math.abs(target - sum) < Math.abs(target - bestSum)) {
+                    bestSum = sum;
+                }
                 
-                if (Math.abs(sum - target) < Math.abs(result - target)){
-                    result = sum;
+                if(sum < target) {
+                    start++;
+                } else if(sum > target) {
+                    end--;
+                } else {
+                    return bestSum;
                 }
             }
         }
-        return result;
+        return bestSum;
     }
 }
