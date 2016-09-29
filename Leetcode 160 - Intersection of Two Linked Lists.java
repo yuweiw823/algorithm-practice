@@ -1,48 +1,63 @@
 Leetcode 160 - Intersection of Two Linked Lists.java
 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if(headA == null || headB == null) return null;
-        
-        ListNode p1 = headA;
-        ListNode p2 = headB;
-        
-        int count1 = 0;
-        while(p1 != null){
-            p1 = p1.next;
-            count1++;
-        }
-        int count2 = 0;
-        while(p2 != null){
-            p2 = p2.next;
-            count2++;
-        }        
-        
-        p1 = headA;
-        p2 = headB;
-        
-        while(count1!=count2){
-            while(count1>count2){
-                p1 = p1.next;
-                count1--;
-            }
-            while(count1<count2){
-                p2 = p2.next;
-                count2--;
-            }
-            if(count1 == count2) break;
+        if(headA == null || headB == null) {
+            return null;
         }
         
-        while(p1!=null && p2!=null){
-            if(p1 == p2) {
-                return p1;
-            }
-            else {
-                p1 = p1.next;
-                p2 = p2.next;
+        int countA = 0;
+        ListNode p = headA;
+        while(p != null) {
+            p = p.next;
+            countA++;
+        }
+        
+        int countB = 0;
+        p = headB;
+        while(p != null) {
+            p = p.next;
+            countB++;
+        }
+        
+        int diff;
+        ListNode fast;
+        ListNode slow;
+        if(countA > countB){
+            diff = countA - countB;
+            fast = headA;
+            slow = headB;
+        } else {
+            diff = countB - countA;
+            fast = headB;
+            slow = headA;
+        }
+        
+        while(diff > 0) {
+            fast = fast.next;
+            diff--;
+        }
+        
+        while(fast != null && slow != null) {
+            if(fast != slow) {
+                fast = fast.next;
+                slow = slow.next;
+            } else {
+                return fast;
             }
         }
+        
         return null;
-        
     }
 }

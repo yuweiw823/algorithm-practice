@@ -1,3 +1,6 @@
+Leetcode 297 - Serialize and Deserialize Binary Tree.java
+
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -7,8 +10,9 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Codec {
 
+//BFS的解法
+public class Codec {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
          if(root == null) {
@@ -49,7 +53,8 @@ public class Codec {
         Queue<TreeNode> Q = new LinkedList<TreeNode>();
         Q.offer(root);
         
-        int i = 1; //使用i来控制并遍历所有nodes， 使用Queue来搭建nodes之间的联系。
+        
+        int i = 1;
         while(i < nodes.length) {
             TreeNode curr = Q.poll();
             
@@ -75,3 +80,8 @@ public class Codec {
 // Your Codec object will be instantiated and called as such:
 // Codec codec = new Codec();
 // codec.deserialize(codec.serialize(root));
+
+
+//DFS的解法
+
+https://discuss.leetcode.com/topic/28029/easy-to-understand-java-solution
