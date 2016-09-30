@@ -4,41 +4,31 @@ Leetcode 102 - Binary Tree Level Order Traversal - 树层序遍历.java
 
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        if(root == null) return res;
-        List<Integer> level = new ArrayList<Integer>();
-        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
-        
-        int curNum = 1;
-        int nextNum = 0;
-        queue.add(root);   //queue是从后面进
-        
-        while(!queue.isEmpty()){
-            TreeNode cur = queue.poll();
-            level.add(cur.val);
-            curNum--;          //当前层的TreeNode的数量
-            if(cur.left!=null){
-                queue.add(cur.left);
-                nextNum++;       //下一层的TreeNode的数量
-            }
-            if(cur.right!=null){
-                queue.add(cur.right);
-                nextNum++;
-            }
-            if(curNum == 0){
-                curNum = nextNum;
-                nextNum = 0;
-                res.add(level);
-                level = new LinkedList<Integer>();
-            }
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if(root == null) {
+            return result;
         }
-        return res;
+        
+        Queue<TreeNode> Q = new LinkedList<TreeNode>();
+        Q.offer(root);
+        
+        while(!Q.isEmpty()) {
+            int size = Q.size(); //注意：只有size和新建level这种层级的东西放在for循环外面
+            List<Integer> level = new ArrayList<Integer>();
+            
+            for(int i = 0; i < size; i++) {
+                TreeNode curr = Q.poll(); //取点放在for循环limian
+                level.add(curr.val);
+                
+                if(curr.left != null) {
+                    Q.offer(curr.left);
+                }
+                if(curr.right != null) {
+                    Q.offer(curr.right);
+                }
+            }
+            result.add(new ArrayList(level));
+        }
+        return result;
     }
-}
-
-class TreeNode{
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x){val = x;}
 }

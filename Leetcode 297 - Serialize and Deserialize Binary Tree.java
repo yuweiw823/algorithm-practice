@@ -83,5 +83,59 @@ public class Codec {
 
 
 //DFS的解法
+//其实就是Preorder遍历
+public class Codec {
 
-https://discuss.leetcode.com/topic/28029/easy-to-understand-java-solution
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+         if(root == null) {
+             return "[]";
+         }
+         
+         StringBuffer sb = new StringBuffer("[");
+         
+         serializeHelper(sb, root);
+         
+         sb.substring(0, sb.length() - 1);  //StringBuffer 可以直接substring
+         sb.append("]");
+         return sb.toString();
+         
+    }
+    
+    public void serializeHelper(StringBuffer sb, TreeNode root) {
+        if(root == null) {
+            sb.append("#").append(",");
+            return;
+        } else {
+            sb.append(root.val).append(",");
+            serializeHelper(sb, root.left);
+            serializeHelper(sb, root.right);
+        }
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        if(data.equals("[]") || data.equals("[#]")) {
+            return null;
+        }
+        
+        String str = data.substring(1, data.length() - 1);  //String不能直接substring，必须指定新的object
+        Queue<String> Q = new LinkedList<String>();
+        Q.addAll(Arrays.asList(str.split(",")));
+
+        TreeNode root = deserializeHelper(Q);
+        return root;
+    }
+    
+    public TreeNode deserializeHelper(Queue<String> Q) {
+        String curr = Q.poll();
+        if(curr.equals("#")) {
+            return null;
+        } else {
+            TreeNode node = new TreeNode(Integer.parseInt(curr));
+            node.left = deserializeHelper(Q);
+            node.right = deserializeHelper(Q);
+            return node;
+        }
+    }
+}

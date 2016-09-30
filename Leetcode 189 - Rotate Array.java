@@ -2,23 +2,29 @@ Leetcode 189 - Rotate Array.java
 
 public class Solution {
     public void rotate(int[] nums, int k) {
-        if(nums == null || nums.length <= 1) return;
+        if(nums == null || nums.length == 0) {
+            return;
+        }
+        
         int n = nums.length;
-        k = k%n;
-        swap(nums, 0, n-1);
-        swap(nums, 0, k-1);
-        swap(nums, k, n-1);
-        return;
+        k = k % n;
+        rotateSub(nums, 0, n - 1 - k);
+        rotateSub(nums, n - k, n - 1);
+        rotateSub(nums, 0, n - 1);
+        
     }
     
-    public void swap(int[]nums, int start, int end){
-        while(start < end){
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start ++;
+    public void rotateSub(int[] nums, int start, int end) {
+        while(start < end) {
+            swap(nums, start, end);
+            start++;
             end--;
         }
-        return;
+    }
+    
+    public void swap(int[] nums, int a, int b) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
     }
 }
