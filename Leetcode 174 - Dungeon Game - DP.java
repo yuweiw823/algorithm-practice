@@ -1,28 +1,32 @@
 Leetcode 174 - Dungeon Game - DP.java
+https://discuss.leetcode.com/topic/7633/best-solution-i-have-found-with-explanations/2
 
-public class Solution {
-    public int calculateMinimumHP(int[][] dungeon) {
-        if(dungeon == null || dungeon.length == 0) return 0;
-        int m = dungeon.length;
-        int n = dungeon[0].length;
-        int[] res = new int[n];
-        res[n-1] = Math.max(1, 1-dungeon[m-1][n-1]);
-        
-        // 如果dungeon[i][j] <= 0,那么res[j+1]- dungeon[i][j] 一定>=1
-        // 如果dungeon[i][j] > 0,说明在这一格不会掉血，那个仅有1足够。
-        for(int j=n-2; j>=0; j--){
-            res[j] = Math.max(1, res[j+1]- dungeon[m-1][j]);
-        }//填入第m-1行的情况
-        
-        if(m == 1) return res[0];
-        
-        for(int i=m-2; i>=0; i--){
-            for(int j=n-1; j>=0; j--){
-                if(j == n-1) res[j] = Math.max(1, res[j]-dungeon[i][j]);
-                else res[j] = Math.max(1, Math.min(res[j+1], res[j]) - dungeon[i][j]);
-            }
+    int calculateMinimumHP(vector &dungeon) {
+    int m = dungeon.size();
+    int n = dungeon[0].size();
+    vector minInitHealth(m, vector<int>(n,0));
+    for(int i=m-1; i>=0; i--)
+    {
+        for (int j=n-1; j>=0; j--)
+        {
+            if (i == m-1 && j == n-1)
+            {
+                minInitHealth[i][j] = max(1, 1 - dungeon[i][j]);
+            }  
+            else if (i == m-1)
+            {
+                minInitHealth[i][j] = max(1, minInitHealth[i][j+1] - dungeon[i][j]);
+            }  
+            else if (j == n-1)
+            {
+                minInitHealth[i][j] = max(1, minInitHealth[i+1][j] - dungeon[i][j]);
+            }  
+            else
+            {
+                minInitHealth[i][j] = max(1, min(minInitHealth[i+1][j],minInitHealth[i][j+1]) - dungeon[i][j]);
+            }  
         }
-        
-        return res[0];
     }
+    
+    return  minInitHealth[0][0];
 }
