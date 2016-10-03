@@ -4,24 +4,23 @@
 //Recursive Method
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        if(root == null) return res;
-        helper(root, res);
-        return res;
+        List<Integer> result = new ArrayList<Integer>();
+        if(root == null) {
+            return result;
+        }
+        
+        DFS(root, result);
+        return result;
     }
     
-    public void helper(TreeNode root, List<Integer> res){
-        if(root==null) return;
-        helper(root.left, res);
-        res.add(root.val);
-        helper(root.right, res);
-    }
-
-    public class TreeNode{
-    	int val;
-    	TreeNode left;
-    	TreeNode right;
-    	TreeNode(int x){val = x;}
+    public void DFS (TreeNode root, List<Integer> result) {
+        if(root == null) {
+            return;
+        }
+        
+        DFS(root.left, result);
+        result.add(root.val);
+        DFS(root.right, result);
     }
 }
 

@@ -14,31 +14,44 @@ public class Solution {
         System.out.println(simplifyPath(path4));
     }
   
-    public static String simplifyPath(String path) {
         //维护一个栈，对于每一个块（以‘/’作为分界）进行分析，
         //遇到‘../’则表示要上一层，那么就是进行出栈操作，
         //遇到‘./’则是停留当前，直接跳过，其他文件路径则直接进栈即可。
         //String 比较使用 .equals()
-        StringBuffer res = new StringBuffer();
-        LinkedList<String> stack = new LinkedList<String>();
-        String[] paths = path.split("/");
-      
-        for(String s: paths){
-            if(s.equals("..") && stack.size()!=0) {  //注意 stack.size()!=0
-                stack.pop();
-            } else if(!s.equals("..") && !s.equals(".") && s !=null && !s.equals("")){
-                stack.push(s);
-            } 
+    public String simplifyPath(String path) {
+        if(path == null || path.length() == 0) {
+            return "";
         }
-      
-        for(int i=stack.size()-1; i>=0; i--){
-            res.append("/");
-            res.append(stack.get(i));
-            
-        }
-          
-        if(res.length() == 0) res.append("/");      //最后检查
         
-        return res.toString();
+        String[] paths = path.split("/");
+        Stack<String> stack = new Stack<String>();
+        StringBuffer result = new StringBuffer();
+        
+        for(int i = 0; i < paths.length; i++) {
+            String curr = paths[i];
+            if(curr.equals(".")) {
+                continue;
+            }
+            
+            if(curr.equals("..") && stack.size() != 0) {
+                stack.pop();
+                continue;
+            }
+            
+            if(curr != null && curr.length() != 0 && !curr.equals("") && !curr.equals("..")) {
+                stack.push(curr);
+            }
+        }
+        
+        int size = stack.size();
+        for(int i = 0; i < size; i++) {
+            result.append("/").append(stack.get(i));
+        }
+        
+        if(result.length() == 0) {
+            result.append("/");
+        }
+        
+        return result.toString();
     }
 }
