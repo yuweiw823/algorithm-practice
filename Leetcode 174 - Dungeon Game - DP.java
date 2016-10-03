@@ -1,4 +1,5 @@
 Leetcode 174 - Dungeon Game - DP.java
+https://discuss.leetcode.com/topic/7633/best-solution-i-have-found-with-explanations/2
 
 public class Solution {
     public int calculateMinimumHP(int[][] dungeon) {
