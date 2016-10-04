@@ -1,42 +1,32 @@
 Leetcode 173 - Binary Search Tree Iterator - Design.java
 
-/**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 
+//其实就是inorder Traversal
 public class BSTIterator {
-    LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
+    private Stack<TreeNode> stack = new Stack<>();
+    private TreeNode curt;
+    
+    // @param root: The root of binary tree.
     public BSTIterator(TreeNode root) {
-        if(root != null){
-            setNext(root);            
-        }
+        curt = root;
     }
 
-    /** @return whether we have a next smallest number */
+    //@return: True if there has next node, or false
     public boolean hasNext() {
-        return !stack.isEmpty();
-    }
-
-    /** @return the next smallest number */
-    public int next() {
-        if(stack.isEmpty()) return -1;
-        TreeNode node = stack.pop();
-        int val = node.val;
-        setNext(node.right);
-        return val;
+        return (curt != null || !stack.isEmpty());
     }
     
-    public void setNext(TreeNode root) {
-        while(root!= null){
-            stack.push(root);
-            root = root.left;
+    //@return: return next node
+    public TreeNode next() {
+        while (curt != null) {
+            stack.push(curt);
+            curt = curt.left;
         }
+        
+        TreeNode node = stack.peek();
+        curr = node.right;
+        stack.pop();
+        return node;
     }
 }
 
