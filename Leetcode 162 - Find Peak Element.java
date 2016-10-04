@@ -33,15 +33,18 @@ class Solution {
 贪心法
 public class Solution {
     public int findPeakElement(int[] nums) {
-        if(nums == null || nums.length == 0) return 0;
-
-        int L = 0;
-        int R = nums.length-1;
-        while(L<R){
-            if(nums[L] <= nums[R]) L++;
-            else R--;
+        int start = 0;
+        int end = nums.length - 1;
+        
+        while(start < end) {
+            if(nums[start] <= nums[end]) {
+                start++; 
+            } else {
+                end--;
+            }
         }
-        return L;
+        
+        return start;
     }
 }
 

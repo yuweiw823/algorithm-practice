@@ -33,14 +33,17 @@ class Solution {
             if(i > 0 && !used[i-1] && nums.get(i) == nums.get(i-1)) {
                 continue;
             }
-            
-            if(!used[i]) {
-                list.add(nums.get(i));
-                used[i] = true;
-                dfs(result, list, nums, used);
-                list.remove(list.size()-1);
-                used[i] = false;
+
+            if(used[i]) {
+                continue;
             }
+            
+            list.add(nums.get(i));
+            used[i] = true;
+            dfs(result, list, nums, used);
+            list.remove(list.size()-1);
+            used[i] = false;
+
         }
     }
 }

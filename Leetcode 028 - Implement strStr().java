@@ -34,7 +34,7 @@ class Solution {
                 }
             }
             //注意这个 if j 判断放在for j 结束后
-            if (j == target.length()){
+            if (j == target.length()){//注意j在for循环上，先++，判断不满足j < 的条件后，再进入这个循环，所以 j == target.length();
                 return i;
             }
         }

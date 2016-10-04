@@ -18,34 +18,25 @@ return 6.
  *     }
  * }
  */
-// public class Solution {
-//     /**
-//      * @param root: The root of binary tree.
-//      * @return: An integer.
-//      */
-//     //不是将整棵树的node都加起来的意思，而是在树的path之间随意走，找到一条最max的路径
-//     public int maxPathSum(TreeNode root) {
-//         if (root == null) {
-//             return 0;
-//         }
-//         int left = maxPathSum(root.left);
-//         int right = maxPathSum(root.right);
-//         return left + right + root.val;
-//     }
-// }
-
 public class Solution {
-    int max = Integer.MIN_VALUE; //这里的max是一个全局变量
+    public int max = Integer.MIN_VALUE;
+    
     public int maxPathSum(TreeNode root) {
         dfs(root);
         return max;
     }
     
-    public int dfs(TreeNode root){
-        if(root == null) return 0;
+    public int dfs(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        
         int left = dfs(root.left);
         int right = dfs(root.right);
+        
+        //本树的最大path，可以不通过根节点
         max = Math.max(max, root.val + left + right);
+        //本树从根节点出发到任何一个节点的最大path，遇到负数立即停止
         return Math.max(0, root.val + Math.max(left, right));
     }
 }
