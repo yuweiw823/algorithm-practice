@@ -7,61 +7,36 @@ import java.util.*;
 // [1, 3],[2, 4] - [1,4]
 // [1, 4],[2, 3] - [1,4]
 
-public class Solution {
-    public static void main(String[] args){
-        List<Interval> intervals = new ArrayList<Interval>();
-        Interval i1 = new Interval(2, 3);
-        intervals.add(i1);
-        Interval i2 = new Interval(2, 2);
-        intervals.add(i2);
-        Interval i3 = new Interval(1, 3);
-        intervals.add(i3);
-        Interval i4 = new Interval(5, 7);
-        intervals.add(i4);
-        Interval i5 = new Interval(4, 6);
-        intervals.add(i5);
-      
-        List<Interval> res = new ArrayList<Interval>();
-        res = merge(intervals);
-      
-        for(Interval i : res){
-            System.out.println("[" + i.start + "," + i.end + "]");
-        }
-    }
     
-    public static List<Interval> merge(List<Interval> intervals) {
-        if(intervals==null || intervals.size() == 0) return intervals;
-        List<Interval> res = new ArrayList<Interval>();
-        
-        //便于理解，res中的是 Interval1(start1，end1), 即将拿来比较的是 Interval2(start2，end2);
-        //先根据start排序,光每次拿 Interval1 和 Interval2 比较，无法真正排序
-        //定义了一个新的Comparators
-        Comparator<Interval> comp = new Comparator<Interval>(){
+public class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        Collections.sort(intervals, new Comparator<Interval>(){
             @Override
-            public int compare(Interval i1, Interval i2){
-                //实现从小到大的排序功能，小的放前面
-                return i1.start - i2.start;   
+            public int compare(Interval a, Interval b) {
+                return a.start - b.start;
             }
-        };
-        Collections.sort(intervals, comp);
+        });
         
-        res.add(intervals.get(0));
-        for(int i=0; i<intervals.size(); i++){
-            //如果 end1 < start2，则在start中取min，(但由于之前已经完全排序，所以这一步其实不用做)
-            //只需在end中取max，推入结果中
-            if(res.get(res.size()-1).end >= intervals.get(i).start){
-                res.get(res.size()-1).end = Math.max(res.get(res.size()-1).end, intervals.get(i).end);
+        int i = 0;
+        while(i < intervals.size() - 1) {
+        Interval curr = intervals.get(i);
+        Interval next = intervals.get(i+1);
+            if(curr.end >= next.start) {
+                int max = Math.max(curr.end, next.end);
+                curr.end = max;
+                intervals.remove(i+1);
             } else {
-                res.add(intervals.get(i));
+                i++;
             }
         }
-        return res;
+        
+        return intervals;
     }
+}
   
-    public static class Interval {
-      int start;
-      int end;
-      Interval() { start = 0; end = 0; }
-      Interval(int s, int e) { start = s; end = e; }
-    }
+public static class Interval {
+  int start;
+  int end;
+  Interval() { start = 0; end = 0; }
+  Interval(int s, int e) { start = s; end = e; }
 }
