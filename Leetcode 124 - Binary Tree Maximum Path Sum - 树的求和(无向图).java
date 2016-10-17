@@ -18,7 +18,7 @@ public class Solution {
         
         //本树的最大path，可以不通过根节点
         max = Math.max(max, root.val + left + right);
-        //本树从根节点出发到任何一个节点的最大path.
+        //本树从根节点出发到任何一个节点的最大path，遇到负数立即停止
         return Math.max(0, root.val + Math.max(left, right));
     }
 }
