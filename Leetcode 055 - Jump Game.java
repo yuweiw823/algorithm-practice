@@ -27,7 +27,7 @@ public class Solution {
             } else {
                 return false;
             }
-        } 
+        } v
         return fastest >= (len - 1);
     }
 }
