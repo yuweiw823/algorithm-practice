@@ -2,6 +2,45 @@
 
 import java.util.*;
 
+//Recursive DFS 解法
+public class Solution {
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        List<String> result = sol.letterCombinations("23");
+        
+        for(int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i) + ",");
+        }
+    }
+    
+    public ArrayList<String> letterCombinations(String digits) {
+        String[] KEYS = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+                                        
+        ArrayList<String> result = new ArrayList<String>();
+        DFS(KEYS, digits, 0, result, "");
+        return result;
+    }
+    
+    public void DFS(String[] KEYS, String digits, int pos, ArrayList<String> result, String prefix) {
+        if(pos == digits.length()) {
+            result.add(prefix);
+            return;
+        }
+        
+        //pos控制的是index位数
+        String letters = KEYS[digits.charAt(pos) - '0'];
+        
+        //for循环的是source
+        for(int i = 0; i < letters.length(); i++) {
+            prefix = prefix + letters.charAt(i);
+            DFS(KEYS, digits, pos + 1, result, prefix);
+            prefix = prefix.substring(0, prefix.length() - 1);
+        }
+    }
+};
+
+
+
 //LinkedList .remove(), .add(), .peek()
 public class Solution {
     public static void main(String[] args){
