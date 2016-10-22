@@ -2,6 +2,47 @@
 
 import java.util.*;
 
+//重写：
+public class Solution {
+    public static void main(String[] args){
+        Solution sol = new Solution();
+        String res = sol.countAndSay(4);
+        System.out.println(res);
+    }
+    
+    public String countAndSay(int n) {
+        String str = "1";
+        if(n == 1) {
+            return str;
+        }
+        
+        for(int i = 1; i < n; i++) {
+            String temp = countAndSayEach(str);
+            str = temp;
+            System.out.println(str);
+        }
+        return str;
+    }
+    
+    public String countAndSayEach(String str) {
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < str.length(); i++) {
+            int p = i;
+            
+            while(p < str.length() && str.charAt(p) == str.charAt(i)) {
+                p++;
+            }
+            
+            int count = p - i;
+            sb.append(count).append(str.charAt(i));
+            i = p - 1;
+        }
+        
+        return sb.toString();
+    }
+}
+
+//以前的方法：
 public class Solution {
   
     public static void main(String[] args){

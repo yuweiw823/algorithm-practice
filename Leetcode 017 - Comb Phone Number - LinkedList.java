@@ -27,12 +27,13 @@ public class Solution {
             return;
         }
         
-        //pos控制的是index位数
+        
         String letters = KEYS[digits.charAt(pos) - '0'];
         
+        //pos控制的是插入的index的位置
         //for循环的是source
         for(int i = 0; i < letters.length(); i++) {
-            prefix = prefix + letters.charAt(i);
+            prefix += letters.charAt(i);
             DFS(KEYS, digits, pos + 1, result, prefix);
             prefix = prefix.substring(0, prefix.length() - 1);
         }

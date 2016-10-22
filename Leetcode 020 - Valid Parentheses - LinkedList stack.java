@@ -23,6 +23,7 @@ public class Solution {
             if(map.containsKey(curr)) {
                 stack.push(map.get(curr));
             } else {
+                //必须先判断isEmpty()，否则在empty的情况下peek()会 OutOfBound Exception
                 if(stack.isEmpty() || stack.peek() != curr) {
                     return false;
                 } else {
