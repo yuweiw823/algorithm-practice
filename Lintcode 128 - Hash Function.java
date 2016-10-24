@@ -7,9 +7,10 @@ class Solution {
      * @return an integer
      */
     public int hashCode(char[] key,int HASH_SIZE) {
-        // write your code here
+        // (a + b) % p == ( a % p + b % p ) % p
         long ans = 0;
         for(int i = 0; i < key.length; i++) {
+            //为了防止溢出，每次都取一下模
             ans = (ans * 33 + (int)(key[i])) % HASH_SIZE;
         }
         return (int)ans;

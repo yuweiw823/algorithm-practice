@@ -2,7 +2,10 @@ Leetcode 128 - Longest Consecutive Sequence - 图思想.java
 
 public class Solution {
     public int longestConsecutive(int[] nums) {
-        if(nums == null || nums.length == 0) return 0;
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        
         HashSet<Integer> set = new HashSet<Integer>();
         int res = 1;
         

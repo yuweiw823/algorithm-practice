@@ -9,7 +9,7 @@ public class Solution {
         String res = sol.countAndSay(4);
         System.out.println(res);
     }
-    
+
     public String countAndSay(int n) {
         String str = "1";
         if(n == 1) {
@@ -19,7 +19,6 @@ public class Solution {
         for(int i = 1; i < n; i++) {
             String temp = countAndSayEach(str);
             str = temp;
-            System.out.println(str);
         }
         return str;
     }

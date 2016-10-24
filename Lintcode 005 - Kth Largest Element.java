@@ -6,43 +6,44 @@ class Solution {
      * @param nums : array of nums
      * @return: description of return
      */
-    
     public int kthLargestElement(int k, int[] nums) {
-        if(nums == null || nums.length == 0 || nums.length < k) {
-            return -1;
-        }
-        quickSort(nums, 0, nums.length - 1);
-        return nums[nums.length - k];
+        // write your code here
+        return quickSelect(nums, 0, nums.length - 1, nums.length + 1 - k);
     }
     
-    public void quickSort(int[] nums, int start, int end) {
-        if(start >= end) {
-            return;
+    public int quickSelect(int[] nums, int start, int end, int k) {
+        if(start == end) {
+            return nums[start];
         }
         
-        int left = start;
-        int right = end;
-        int pivot = nums[start + (end - start) / 2];
-        while(left <= right) {
-            while(left <= right && nums[left] < pivot) {
-                left++;
-            }
-            while(left <= right && nums[right] > pivot) {
-                right--;
-            }
-            if(left <= right) {
-                swap(left, right, nums);
-                left++;
-                right--;
-            }
+        int pos = partition(nums, start, end);
+        if(pos + 1 == k) {
+            return nums[pos];
+        } else if(pos + 1 < k) {
+            return quickSelect(nums, pos + 1, end, k);
+        } else {
+            return quickSelect(nums, start, pos - 1, k);
         }
-        quickSort(nums, start, right);
-        quickSort(nums, left, end);
+
     }
     
-    public void swap(int a, int b, int[] nums) {
-        int temp = nums[a];
-        nums[a] = nums[b];
-        nums[b] = temp;
-    }    
+    public int partition(int[] nums, int start, int end) {
+        int left = start;
+        int right = end;
+        int pivot = nums[left];
+        
+        while(left < right) {
+            while(left < right && right >= pivot) {
+                right--;
+            }
+            nums[left] = nums[right];
+            while(left < right && left <= pivot) {
+                left++;
+            }
+            nums[right] = nums[left];
+        }
+        
+        nums[left] = pivot;
+        return left;
+    }
 };

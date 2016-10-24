@@ -21,6 +21,7 @@ public class Solution {
 
     public static void NQueen(int n, int row, int[] col, List<List<String>> res){
         if(row==n){
+            //打印
             List<String> eachRes = new ArrayList<String>(); //each res
             for(int i=0;i<n; i++){  //each row in each res
                 StringBuffer eachRow = new StringBuffer();
@@ -33,10 +34,12 @@ public class Solution {
             res.add(eachRes);
             return;
         }
+        //row -> pos
+        //i -> value
         for(int i=0; i<n; i++){
             col[row] = i;   //在每个row，试着把Q放到第i列
             if(checker(col, row)){
-                NQueen(n, row+1, col, res);
+                NQueen(n, row + 1, col, res);
             }
         }
         
