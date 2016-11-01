@@ -43,38 +43,26 @@ public class Solution {
 }
 
 
+//Quick Select 直接看这个
+https://discuss.leetcode.com/topic/18662/ac-clean-quickselect-java-solution-avg-o-n-time
+
 
 import java.io.*;
 import java.util.*;
 
-/*
- * To execute Java, please define "static void main" on a class
- * named Solution.
- *
- * If you need more classes, simply define them inline.
- */
-
 class Solution {
-    /*
-     * @param nums an integer array
-     * @param k an integer
-     * @return the top k largest numbers in array
-     */
     public static void main(String[] args) {
       Solution sol = new Solution();
       int[] nums = {4,1,3,5,6,8,4,3,6};
       int result = sol.findKthLargest(nums, 6);
-      
       System.out.println("Result = " + result);
       
       for(int i = 0; i < nums.length; i++) {
         System.out.print(nums[i] + ",");
       }
       
-      
-      
     }
-  
+    
   public int findKthLargest(int[] a, int k) {
     int n = a.length;
     int p = quickSelect(a, 0, n - 1, n - k + 1);
@@ -88,7 +76,11 @@ class Solution {
     // put nums that are  > pivot to the right
     int i = lo, j = hi, pivot = a[hi];
     while (i < j) {
-      if (a[i++] > pivot) swap(a, --i, --j);
+      if (a[i++] > pivot) {
+          j--;
+          i--;
+          swap(a, i, j);
+      }
     }
     swap(a, i, hi);
     

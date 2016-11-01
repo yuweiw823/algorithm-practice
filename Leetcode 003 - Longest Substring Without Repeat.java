@@ -21,6 +21,7 @@ public class Solution {
         int maxLen = 0;
         for(int pioneer = 0; pioneer<s.length(); pioneer++){
             while(set[s.charAt(pioneer)]){
+                //check 负责找到究竟是哪个字母使得pioneer变为flase，由于是连续的，所以一路是哪个的所有字母全部株连
                 set[s.charAt(checker)] = false;
                 checker++;
             }
