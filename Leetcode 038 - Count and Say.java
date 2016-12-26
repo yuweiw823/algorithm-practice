@@ -41,7 +41,7 @@ public class Solution {
     }
 }
 
-//以前的方法：
+//以前写的方法：
 public class Solution {
   
     public static void main(String[] args){

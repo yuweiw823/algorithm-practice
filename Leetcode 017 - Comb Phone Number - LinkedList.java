@@ -40,6 +40,42 @@ public class Solution {
     }
 };
 
+//如果要求举出所有的可能
+public class Solution {
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        List<String> result = sol.letterCombinations();
+        
+        for(int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i) + ",");
+        }
+    }
+    
+    public ArrayList<String> letterCombinations() {
+        String[] KEYS = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+                                        
+        ArrayList<String> result = new ArrayList<String>();
+        DFS(KEYS, 0, result, "");
+        return result;
+    }
+    
+    public void DFS(String[] KEYS, int pos, ArrayList<String> result, String prefix) {
+        if(pos >= KEYS.size()) {
+            result.add(prefix);
+            return;
+        }
+        
+        String letters = KEYS[pos];
+        //pos控制的是index位数
+        //for循环的是source
+        for(int i = 0; i < letters.length(); i++) {
+            prefix = prefix + letters.charAt(i);
+            DFS(KEYS, pos + 1, result, prefix);
+            prefix = prefix.substring(0, prefix.length() - 1);
+        }
+    }
+};
+
 
 
 //LinkedList .remove(), .add(), .peek()

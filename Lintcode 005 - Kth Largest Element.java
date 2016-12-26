@@ -1,5 +1,7 @@
 Lintcode 005 - Kth Largest Element.java
 
+
+O(n) = O(n) + O(n/2) + O(n/4)
 class Solution {
     /*
      * @param k : description of k
