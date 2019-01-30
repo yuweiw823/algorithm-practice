@@ -34,15 +34,13 @@ public class Solution {
             }
         }
         
-        if (target < A[start]) {
+        if(target <= A[start]) {
             return start;
-        } else if (A[end] < target) {
+        } else if (target <= A[end]) {
+            return end;
+        } else {
             return end + 1;
-        } else if (A[start] == target) {
-            return start;
         }
-        
-        return end;
     }
 }
 
