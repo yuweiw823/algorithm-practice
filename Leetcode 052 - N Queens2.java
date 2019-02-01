@@ -40,7 +40,11 @@ public class Solution {
     
     public static boolean checker(int[] col,int row){
         for(int i=0; i < row; i++){
-            if(col[row] == col[i] || Math.abs(col[row] - col[i]) == row - i) return false;
+            // 撞行 || 撞对角线
+            if(col[row] == col[i] || Math.abs(col[row] - col[i]) == row - i) 
+            {
+                return false;
+            }
         }
         return true;
     }

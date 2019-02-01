@@ -21,7 +21,7 @@ public class Solution {
         }
         
         if(grid[i][j] != '1') {
-            return;
+            return; // equals `#` or `0`
         }
         
         grid[i][j] = '#';
