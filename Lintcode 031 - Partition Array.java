@@ -64,7 +64,7 @@ public class Solution {
 	        }
 	    }
 	    
-	    if(right < 0) {
+	    if(right < 0) { 
 	        return 0;
 	    } else if(left > nums.length -1) {
 	        return nums.length;

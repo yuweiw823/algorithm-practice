@@ -31,7 +31,7 @@ public class Solution {
         // 思路2: Recursive, 左子树是否为BST？右子树是否为BST？
         // 注意这里的大小比较不是和自己的左右node比，而是整棵树拍平了后的左右比。
         // 因此要用 min， max 进行记录
-        return DFS(root, null, null);
+        return DFS(root, null, null); 
     }
     
     public boolean DFS(TreeNode root, Integer min, Integer max) {

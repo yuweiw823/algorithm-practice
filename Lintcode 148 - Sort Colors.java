@@ -1,5 +1,7 @@
 Lintcode 148 - Sort Colors.java
 
+https://wizardforcel.gitbooks.io/the-art-of-programming-by-july/content/02.07.html
+
 class Solution {
     /**
      * @param nums: A list of integer which is 0, 1 or 2 

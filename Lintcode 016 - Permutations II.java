@@ -30,14 +30,15 @@ class Solution {
         
         for(int i = 0; i < nums.size(); i++) {
             //连续3个 && 条件，一个都不能少
-            if(i > 0 && !used[i-1] && nums.get(i) == nums.get(i-1)) {
+            if(nums.get(i) == nums.get(i-1) || i == 0 && !used[i-1]) {
                 continue;
             }
 
-            if(used[i]) {
+            if(used[i])
+            {
                 continue;
             }
-            
+
             list.add(nums.get(i));
             used[i] = true;
             dfs(result, list, nums, used);
