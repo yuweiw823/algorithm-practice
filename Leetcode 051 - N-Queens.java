@@ -7,11 +7,11 @@ import java.util.*;
 
 public class Solution {
   public static void main(String[] args){
-        List<List<String>> res = new ArrayList<List<String>>();
-        int[] col = new int[4];
-        NQueen(4, 0, col, res);
+        List<List<String>> results = new ArrayList<List<String>>();
+        int[] res = new int[4];
+        NQueen(4, 0, res, results);
     
-        for(List<String> eachRes : res){
+        for(List<String> eachRes : results){
             for(String eachRow : eachRes){
                 System.out.println(eachRow);
             }
@@ -19,14 +19,14 @@ public class Solution {
         }
     }
 
-    public static void NQueen(int n, int row, int[] col, List<List<String>> res){
-        if(row==n){
+    public static void NQueen(int n, int currentRow, int[] res, List<List<String>> results){
+        if(currentRow==n){
             //打印
             List<String> eachRes = new ArrayList<String>(); //each res
-            for(int i=0;i<n; i++){  //each row in each res
+            for(int i=0;i<n; i++){  //each currentRow in each res
                 StringBuffer eachRow = new StringBuffer();
-                for(int j=0; j<n; j++){ //each col in each row
-                    if(col[i] == j) eachRow.append("Q");
+                for(int j=0; j<n; j++){ //each res in each currentRow
+                    if(res[i] == j) eachRow.append("Q");
                     else eachRow.append(".");
                 }
                 eachRes.add(eachRow.toString());
@@ -34,20 +34,18 @@ public class Solution {
             res.add(eachRes);
             return;
         }
-        //row -> pos
-        //i -> value
         for(int i=0; i<n; i++){
-            col[row] = i;   //在每个row，试着把Q放到第i列
-            if(checker(col, row)){
-                NQueen(n, row + 1, col, res);
+            res[currentRow] = i;   //在每个row，试着把Q放到第i列
+            if(checker(res, currentRow)){
+                NQueen(n, currentRow + 1, res, results);
             }
         }
         
     }
   
-    public static boolean checker(int[] col, int row){
-        for(int i=0; i<row; i++){   //i<row, 只需要检查已经放过的就可以
-            if(col[row] == col[i] || Math.abs(col[row] - col[i]) == row - i) return false;
+    public static boolean checker(int[] res, int currentRow){
+        for(int i=0; i<currentRow; i++){   //i<currentRow, 只需要检查已经放过的就可以
+            if(res[currentRow] == res[i] || Math.abs(res[currentRow] - res[i]) == currentRow - i) return false;
         }
         return true;
     }
