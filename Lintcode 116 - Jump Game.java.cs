@@ -26,21 +26,21 @@ namespace CSharp
             }
             //Keep an int to recoard the farest index can move to
             int size = A.Length;
-            int farest = A[0];
+            int farthest = A[0];
             
             for(int i = 1; i < size; i++)
             {
-                if(farest >= i) 
+                if(farthest >= i) 
                 {
-                    farest = Math.Max(farest, i + A[i]);
-                    if(farest >= size - 1)
+                    farthest = Math.Max(farthest, i + A[i]);
+                    if(farthest >= size - 1)
                     {
                         return true;
                     }
                 }
             }
 
-            return (farest >= size - 1);
+            return (farthest >= size - 1);
         }
     }
 

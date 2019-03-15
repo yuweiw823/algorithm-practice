@@ -16,7 +16,8 @@ public class Solution {
         }
         if(target<0 || start>=num.length) return;
         for(int i=start;i<num.length;i++){
-            if(i>start && num[i]==num[i-1]) continue;  //*重要,如题example的[1,1,6]，第二个会在 helper(num, i+1...)这里的i+1里算进去 ，所以跳过重复元素
+            if(i>start && num[i]==num[i-1]) continue;  
+            //*重要,如题example的[1,1,6]，第二个会在 helper(num, i+1...)这里的i+1里算进去 ，所以跳过重复元素
             item.add(num[i]);
             helper(num,i+1,target-num[i],item,res);
             item.remove(item.size()-1);

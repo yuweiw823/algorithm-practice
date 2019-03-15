@@ -1,6 +1,5 @@
 //Leetcode 041 - First Missing Positive.java
-
-
+//交换下标和值
 public class Solution {
     public int firstMissingPositive(int[] nums) {
         if(nums == null || nums.length < 1) {

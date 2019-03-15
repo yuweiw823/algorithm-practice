@@ -26,7 +26,7 @@ public class Solution {
         //但不用考虑溢出，因为自动返回 Integer.MAX，
         //可看作在index位置有个比target大的数，程序仍然能继续运行
 
-        int start = 0, end = index;        
+        int start = index / 2, end = index;        
         while (start + 1 < end) {
             int mid = start + (end - start) / 2;
             if (reader.get(mid) == target) {

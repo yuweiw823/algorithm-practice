@@ -51,7 +51,6 @@ public class Solution {
 
 // 为什么要 -digit 和 + digit:
 // 以 overflow 的 MAX.VALUE+1 (2147483648)为例：
-
 // result = 214748364
 // (Integer. MAX_VALUE-digit )/10) = (2147483647 - 8) / 10 = 214748363   //直接return MAX_VALUE
 // (Integer. MAX_VALUE )/10) = 2147483647 / 10 = 214748364 //不return MAX_VALUE, 会在下一步引发overflow
